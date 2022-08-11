@@ -55,7 +55,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('REST API Example'),
+        title: const Text('REST API Example V2'),
       ),
       body: _userModel == null || _userModel!.isEmpty
           ? const Center(
