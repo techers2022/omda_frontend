@@ -1,7 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:omda_frontend/src/features/authentication/services/auth.service.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  late bool invalidUser = false;
+
+  void loginUser(BuildContext context) async {
+    if (await AuthService().loginUser(nameController.text)) {
+      Navigator.pop(context);
+      print('user found');
+    } else {
+      setState(() => {invalidUser = true});
+      print('no user');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,22 +42,23 @@ class LoginPage extends StatelessWidget {
                     child: Image.asset('assets/images/flutter-logo.png')),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
-                decoration: InputDecoration(
+                controller: nameController,
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email',
                     hintText: 'Enter valid email id as abc@gmail.com'),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(
+            Padding(
+              padding: const EdgeInsets.only(
                   left: 15.0, right: 15.0, top: 15, bottom: 0),
-              //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 obscureText: true,
-                decoration: InputDecoration(
+                controller: passwordController,
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Password',
                     hintText: 'Enter secure password'),
@@ -59,7 +80,7 @@ class LoginPage extends StatelessWidget {
                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  loginUser(context);
                 },
                 child: const Text(
                   'Login',
@@ -67,6 +88,10 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
             ),
+            invalidUser
+                ? const Text('Invalid user',
+                    style: TextStyle(color: Colors.red))
+                : const Text(''),
             const SizedBox(
               height: 130,
             ),
