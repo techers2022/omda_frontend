@@ -7,7 +7,7 @@ import 'package:omda_frontend/user.model.dart';
 class ApiService {
   Future<List<User>?> getUsers() async {
     try {
-      var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.usersEndpoint);
+      var url = Uri.parse(TestApiConstants.baseUrl + TestApiConstants.usersEndpoint);
       var response = await http.get(url);
       if (response.statusCode == 200) {
         List<User> model = userFromJson(response.body);
