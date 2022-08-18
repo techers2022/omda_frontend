@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:omda_frontend/LoginPage.dart';
 import 'package:omda_frontend/api.service.dart';
 import 'package:omda_frontend/user.model.dart';
 
 void main() {
   runApp(const MaterialApp(
     title: 'Creating My First Route',
-    home: FirstRoute(),
+    home: MainPage(),
   ));
 }
 
-class FirstRoute extends StatelessWidget {
-  const FirstRoute({super.key});
+class MainPage extends StatelessWidget {
+  const MainPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,42 +19,19 @@ class FirstRoute extends StatelessWidget {
       appBar: AppBar(
         title: const Text('MyFirsPage'),
       ),
-      body: Center(
-        child: ElevatedButton(
-          child: const Text('Open MyApp'),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const MyApp()),
-            );
-          },
+      body: Column(children: [
+        Center(
+          child: ElevatedButton(
+            child: const Text('Login'),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Login()),
+              );
+            },
+          ),
         ),
-      ),
-    );
-  }
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: const Home(),
+      ]),
     );
   }
 }
