@@ -52,14 +52,6 @@ class HomePage extends StatelessWidget {
             );
           }
           break;
-        case 4:
-          {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const SearchGetWorkPage()),
-            );
-          }
-          break;
         default:
           {
             Navigator.push(
@@ -73,9 +65,82 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.redAccent,
-        title: const Text('App'),
+          // The search area here
+          backgroundColor: Color(0xFFFFB300),
+          title: Container(
+            margin: EdgeInsets.fromLTRB(0, 0, 40, 0),
+            width: double.infinity,
+            height: 40,
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(20)),
+            child: Center(
+              child: TextField(
+                decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.search),
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.clear),
+                      onPressed: () {
+                        /* Clear the search field */
+                      },
+                    ),
+                    hintText: 'Search...',
+                    border: InputBorder.none),
+              ),
+            ),
+          )),
+      //navigatia drawer colt staga sus
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color(0xFFFFB300),
+              ),
+              child: Text('Drawer Header'),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.person,
+              ),
+              title: const Text('Profile'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const LoginPage()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.contact_page_rounded,
+              ),
+              title: const Text('Customer Service'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => const CustomerServicePage()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.volunteer_activism_rounded,
+              ),
+              title: const Text('About Us'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const AboutPage()),
+                );
+              },
+            ),
+          ],
+        ),
       ),
+      // butoanele din mijloc
+      /*
       body: Center(
         child: Column(
           children: [
@@ -193,9 +258,103 @@ class HomePage extends StatelessWidget {
             ),
           ],
         ),
-      ),
+      ), */
 
-      //Navigation bar
+      // page content
+      body: Container(
+          child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 10, bottom: 10),
+            child: Text(
+              'Choose category',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (BuildContext ctx, int index) {
+                  return Container(
+                    margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                    height: 150,
+                    child: InkWell(
+                      child: Stack(
+                        children: [
+                          Positioned.fill(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Image.asset(
+                                  'assets/images/gardeningcat.jpg',
+                                  fit: BoxFit.cover),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            child: Container(
+                              height: 120,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(20),
+                                    bottomRight: Radius.circular(20),
+                                  ),
+                                  gradient: LinearGradient(
+                                      begin: Alignment.bottomCenter,
+                                      end: Alignment.topCenter,
+                                      colors: [
+                                        Colors.black.withOpacity(0.7),
+                                        Colors.transparent
+                                      ])),
+                            ),
+                          ),
+                          Positioned(
+                              bottom: 0,
+                              child: Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Row(
+                                  children: [
+                                    ClipOval(
+                                      child: Container(
+                                        color: Colors.red,
+                                        padding: EdgeInsets.all(10),
+                                        child: Icon(Icons.favorite,
+                                            color: Colors.white, size: 30),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      'Gradinarit',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 25,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ))
+                        ],
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => const PostWorkPage()),
+                        );
+                      },
+                    ),
+                  );
+                }),
+          )
+        ],
+      )),
+
+      //bottom navigation bar
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
@@ -213,10 +372,6 @@ class HomePage extends StatelessWidget {
           BottomNavigationBarItem(
               icon: Icon(Icons.add_to_photos),
               label: 'Add Job',
-              backgroundColor: Color(0xFFFFB300)),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.more),
-              label: 'More',
               backgroundColor: Color(0xFFFFB300)),
         ],
         onTap: _onItemTapped,
