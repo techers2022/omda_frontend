@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
           {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const SearchDoWorkPage()),
+              MaterialPageRoute(builder: (_) => const SearchGetWorkPage()),
             );
           }
           break;
@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
           {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const SearchGetWorkPage()),
+              MaterialPageRoute(builder: (_) => const SearchDoWorkPage()),
             );
           }
           break;
@@ -67,8 +67,21 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
           // The search area here
           backgroundColor: Color(0xFFFFB300),
+          actions: [
+            IconButton(
+              icon: Image.asset('assets/images/logoomdarb.png'),
+              iconSize: 60,
+              padding: const EdgeInsets.all(0),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const LoginPage()),
+                );
+              },
+            ),
+          ],
           title: Container(
-            margin: EdgeInsets.fromLTRB(0, 0, 40, 0),
+            margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
             width: double.infinity,
             height: 40,
             decoration: BoxDecoration(
@@ -95,9 +108,18 @@ class HomePage extends StatelessWidget {
           children: [
             const DrawerHeader(
               decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(
+                      "assets/images/logoomdarb.png",
+                    ),
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.bottomRight),
                 color: Color(0xFFFFB300),
               ),
-              child: Text('Drawer Header'),
+              child: Text(
+                'Drawer Header',
+                textAlign: TextAlign.justify,
+              ),
             ),
             ListTile(
               leading: Icon(
@@ -139,127 +161,6 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      // butoanele din mijloc
-      /*
-      body: Center(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                child: const Text('LoginPage'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => const LoginPage()),
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                child: const Text('RegisterPage'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => const RegisterPage()),
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                child: const Text('AboutPage'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => const AboutPage()),
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                child: const Text('CustomerServicePage'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const CustomerServicePage()),
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                child: const Text('SearchDoWorkPage'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => const SearchDoWorkPage()),
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                child: const Text('DetailedViewDoWorkPage'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const DetailedViewDoWorkPage()),
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                child: const Text('SearchGetWorkPage'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const SearchGetWorkPage()),
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                child: const Text('DetailedViewGetWorkPage'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const DetailedViewGetWorkPage()),
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                child: const Text('PostWorkPage'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => const PostWorkPage()),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-      ), */
-
       // page content
       body: Container(
           child: Column(
@@ -344,7 +245,7 @@ class HomePage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => const PostWorkPage()),
+                              builder: (_) => const SearchGetWorkPage()),
                         );
                       },
                     ),
@@ -374,6 +275,7 @@ class HomePage extends StatelessWidget {
               label: 'Add Job',
               backgroundColor: Color(0xFFFFB300)),
         ],
+        currentIndex: 0,
         onTap: _onItemTapped,
       ),
     );
