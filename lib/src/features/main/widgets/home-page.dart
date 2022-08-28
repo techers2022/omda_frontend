@@ -8,6 +8,7 @@ import 'package:omda_frontend/src/features/get-work/widgets/search-get-work-page
 import 'package:omda_frontend/src/features/info-app/widgets/about-page.dart';
 import 'package:omda_frontend/src/features/info-app/widgets/customer-service-page.dart';
 import 'package:omda_frontend/src/features/post-work/widgets/post-work-page.dart';
+import 'package:omda_frontend/src/features/profile/widgets/profile_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -129,7 +130,7 @@ class HomePage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => const LoginPage()),
+                  MaterialPageRoute(builder: (_) => const ProfilePage()),
                 );
               },
             ),
