@@ -10,13 +10,9 @@ import 'package:omda_frontend/src/features/info-app/widgets/customer-service-pag
 import 'package:omda_frontend/src/features/post-work/widgets/post-work-page.dart';
 import 'package:omda_frontend/src/features/main/widgets/home-page.dart';
 
-class SearchGetWorkPage extends StatelessWidget {
-  const SearchGetWorkPage({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
+class WrapWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //Selectia unei pagini din navigation bar
     void _onItemTapped(int index) {
       switch (index) {
         case 0:
@@ -32,7 +28,7 @@ class SearchGetWorkPage extends StatelessWidget {
           {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const SearchGetWorkPage()),
+              MaterialPageRoute(builder: (_) => const SearchDoWorkPage()),
             );
           }
           break;
@@ -41,7 +37,7 @@ class SearchGetWorkPage extends StatelessWidget {
           {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const SearchDoWorkPage()),
+              MaterialPageRoute(builder: (_) => const SearchGetWorkPage()),
             );
           }
           break;
@@ -65,7 +61,6 @@ class SearchGetWorkPage extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: Colors.grey[200],
       appBar: AppBar(
           // The search area here
           backgroundColor: Color(0xFFFFB300),
@@ -164,86 +159,6 @@ class SearchGetWorkPage extends StatelessWidget {
         ),
       ),
       // page content
-      body: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 200,
-            childAspectRatio: 0.68,
-            crossAxisSpacing: 0,
-            mainAxisSpacing: 0),
-        shrinkWrap: true,
-        itemCount: 5,
-        itemBuilder: (BuildContext ctx, int index) {
-          return Container(
-            padding: EdgeInsets.only(
-              left: 5,
-              right: 5,
-              top: 5,
-            ),
-            margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(10)),
-            child: InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const DetailedViewGetWorkPage()),
-                  );
-                },
-                child: Column(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.asset('assets/images/gazon.jpg',
-                          height: 100, width: 200, fit: BoxFit.cover),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(
-                          bottom: 8, top: 10, left: 10, right: 10),
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Ajutor tuns gazon",
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.orange,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(bottom: 8, left: 5, right: 5),
-                      alignment: Alignment.centerLeft,
-                      child: Text("Am nevoie de cineva sa imi tunda gazonul",
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.black,
-                          )),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "\50 RON",
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.lightBlue[700]),
-                          ),
-                          Icon(
-                            Icons.shopping_cart,
-                            color: Colors.lightBlue[700],
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                )),
-          );
-        },
-      ),
 
       //bottom navigation bar
       bottomNavigationBar: BottomNavigationBar(
@@ -265,7 +180,6 @@ class SearchGetWorkPage extends StatelessWidget {
               label: 'Add Job',
               backgroundColor: Color(0xFFFFB300)),
         ],
-        currentIndex: 1,
         onTap: _onItemTapped,
       ),
     );
