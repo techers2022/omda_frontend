@@ -65,6 +65,7 @@ class SearchDoWorkPage extends StatelessWidget {
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
           // The search area here
@@ -173,7 +174,8 @@ class SearchDoWorkPage extends StatelessWidget {
         shrinkWrap: true,
         itemCount: 5,
         itemBuilder: (BuildContext ctx, int index) {
-          return Container(
+          return Expanded(
+            child: Container(
               padding: EdgeInsets.only(
                 left: 5,
                 right: 5,
@@ -234,7 +236,9 @@ class SearchDoWorkPage extends StatelessWidget {
                     ),
                   ),
                 ],
-              ));
+              ),
+            ),
+          );
         },
       ),
 
