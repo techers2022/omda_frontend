@@ -17,6 +17,7 @@ class SearchGetWorkPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //Selectia unei pagini din navigation bar
+
     void _onItemTapped(int index) {
       switch (index) {
         case 0:
@@ -64,7 +65,19 @@ class SearchGetWorkPage extends StatelessWidget {
       }
     }
 
+    String dropdownvalue = 'Item 1';
+
+    // List of items in our dropdown menu
+    var items = [
+      'Item 1',
+      'Item 2',
+      'Item 3',
+      'Item 4',
+      'Item 5',
+    ];
+    SearchGetWorkPage createState() => const SearchGetWorkPage();
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
           // The search area here
@@ -164,85 +177,166 @@ class SearchGetWorkPage extends StatelessWidget {
         ),
       ),
       // page content
-      body: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 200,
-            childAspectRatio: 0.68,
-            crossAxisSpacing: 0,
-            mainAxisSpacing: 0),
-        shrinkWrap: true,
-        itemCount: 5,
-        itemBuilder: (BuildContext ctx, int index) {
-          return Container(
-            padding: EdgeInsets.only(
-              left: 5,
-              right: 5,
-              top: 5,
-            ),
-            margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(10)),
-            child: InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const DetailedViewGetWorkPage()),
-                  );
-                },
-                child: Column(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.asset('assets/images/gazon.jpg',
-                          height: 100, width: 200, fit: BoxFit.cover),
-                    ),
-                    Container(
+
+      body: ListView(
+        children: [
+          Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 10),
+                width: 100,
+                height: 48,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Color(0xFFFFB300)),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      DropdownButton(
+                        // Initial Value
+                        value: dropdownvalue,
+
+                        // Down Arrow Icon
+                        icon: const Icon(Icons.keyboard_arrow_down),
+
+                        // Array list of items
+                        items: items.map((String items) {
+                          return DropdownMenuItem(
+                            value: items,
+                            child: Text(items),
+                          );
+                        }).toList(),
+                        // After selecting the desired option,it will
+                        // change button value to selected value
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            dropdownvalue = newValue!;
+                          });
+                        },
+                        borderRadius: BorderRadius.circular(20),
+                        dropdownColor: Color(0xFFFFB300),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              GridView.builder(
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 210,
+                    childAspectRatio: 0.68,
+                    crossAxisSpacing: 0,
+                    mainAxisSpacing: 0),
+                shrinkWrap: true,
+                itemCount: 5,
+                itemBuilder: (BuildContext ctx, int index) {
+                  return Flexible(
+                    child: Container(
                       padding: EdgeInsets.only(
-                          bottom: 8, top: 10, left: 10, right: 10),
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Ajutor tuns gazon",
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.orange,
-                          fontWeight: FontWeight.bold,
+                        left: 5,
+                        right: 5,
+                        top: 5,
+                      ),
+                      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const DetailedViewDoWorkPage()),
+                          );
+                        },
+                        child: Column(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.asset('assets/images/gazon.jpg',
+                                  height: 100, width: 200, fit: BoxFit.cover),
+                            ),
+                            Container(
+                              padding: EdgeInsets.only(
+                                  bottom: 8, top: 10, left: 10, right: 10),
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "Ajutor tuns gazon",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.orange,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding:
+                                  EdgeInsets.only(bottom: 8, left: 5, right: 5),
+                              alignment: Alignment.centerLeft,
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.location_on,
+                                    size: 13,
+                                    color: Colors.lightBlue[700],
+                                  ),
+                                  SizedBox(
+                                    width: 2,
+                                  ),
+                                  Text(
+                                    'Oradea',
+                                    style: TextStyle(
+                                        color: Colors.lightBlue[700],
+                                        fontWeight: FontWeight.w100,
+                                        fontSize: 10),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              padding:
+                                  EdgeInsets.only(bottom: 8, left: 5, right: 5),
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                  "Am nevoie de cineva sa imi tunda gazonul",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black,
+                                  )),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 10),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "\50 RON",
+                                    style: TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.lightBlue[700]),
+                                  ),
+                                  Text(
+                                    "2.5 Hrs",
+                                    style: TextStyle(
+                                        fontSize: 10,
+                                        color: Colors.lightBlue[700]),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsets.only(bottom: 8, left: 5, right: 5),
-                      alignment: Alignment.centerLeft,
-                      child: Text("Am nevoie de cineva sa imi tunda gazonul",
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.black,
-                          )),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "\50 RON",
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.lightBlue[700]),
-                          ),
-                          Icon(
-                            Icons.shopping_cart,
-                            color: Colors.lightBlue[700],
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                )),
-          );
-        },
+                  );
+                },
+              ),
+            ],
+          ),
+        ],
       ),
 
       //bottom navigation bar
@@ -270,4 +364,6 @@ class SearchGetWorkPage extends StatelessWidget {
       ),
     );
   }
+
+  void setState(Null Function() param0) {}
 }

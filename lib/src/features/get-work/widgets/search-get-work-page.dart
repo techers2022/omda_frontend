@@ -65,6 +65,7 @@ class SearchDoWorkPage extends StatelessWidget {
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
           // The search area here
@@ -164,78 +165,131 @@ class SearchDoWorkPage extends StatelessWidget {
         ),
       ),
       // page content
-      body: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 200,
-            childAspectRatio: 0.68,
-            crossAxisSpacing: 0,
-            mainAxisSpacing: 0),
-        shrinkWrap: true,
-        itemCount: 5,
-        itemBuilder: (BuildContext ctx, int index) {
-          return Container(
-              padding: EdgeInsets.only(
-                left: 5,
-                right: 5,
-                top: 5,
-              ),
-              margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+      body: Column(
+        children: [
+          DecoratedBox(
               decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
-              child: Column(
-                children: [
-                  InkWell(
-                    onTap: () {},
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.asset('assets/images/gigel.jpg',
-                          height: 100, width: 200, fit: BoxFit.cover),
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(
-                        bottom: 8, top: 10, left: 10, right: 10),
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Cant la nunti",
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.orange,
-                        fontWeight: FontWeight.bold,
+                color: Color(0xFFFFB300), //background color of dropdown button
+                //border of dropdown button
+                borderRadius: BorderRadius.circular(
+                    50), //border raiuds of dropdown button
+              ),
+              child: Padding(
+                  padding: EdgeInsets.only(left: 30, right: 30),
+                  child: DropdownButton(
+                    value: "United",
+                    items: [
+                      //add items in the dropdown
+                      DropdownMenuItem(
+                        child: Text("United"),
+                        value: "United",
                       ),
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(bottom: 8, left: 5, right: 5),
-                    alignment: Alignment.centerLeft,
-                    child: Text("Cant la nunti sau evenimente muzica clasica",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.black,
-                        )),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "\200 RON",
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.lightBlue[700]),
+                      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
+                      DropdownMenuItem(
+                        child: Text("Russia"),
+                        value: "Russia",
+                      )
+                    ],
+                    onChanged: (value) {
+                      //get value when changed
+                      print("You have selected $value");
+                    },
+                    icon: Padding(
+                        //Icon at tail, arrow bottom is default icon
+                        padding: EdgeInsets.only(left: 20),
+                        child: Icon(Icons.arrow_circle_down_sharp)),
+                    iconEnabledColor: Colors.white, //Icon color
+                    style: TextStyle(
+                        //te
+                        color: Colors.white, //Font color
+                        fontSize: 20 //font size on dropdown button
                         ),
-                        Icon(
-                          Icons.shopping_cart,
-                          color: Colors.lightBlue[700],
-                        )
-                      ],
-                    ),
+
+                    dropdownColor:
+                        Color(0xFFFFB300), //dropdown background color
+                    underline: Container(), //remove underline
+                    isExpanded: true, //make true to make width 100%
+                  ))),
+          GridView.builder(
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 200,
+                childAspectRatio: 0.68,
+                crossAxisSpacing: 0,
+                mainAxisSpacing: 0),
+            shrinkWrap: true,
+            itemCount: 5,
+            itemBuilder: (BuildContext ctx, int index) {
+              return Expanded(
+                child: Container(
+                  padding: EdgeInsets.only(
+                    left: 5,
+                    right: 5,
+                    top: 5,
                   ),
-                ],
-              ));
-        },
+                  margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Column(
+                    children: [
+                      InkWell(
+                        onTap: () {},
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.asset('assets/images/gigel.jpg',
+                              height: 100, width: 200, fit: BoxFit.cover),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(
+                            bottom: 8, top: 10, left: 10, right: 10),
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Cant la nunti",
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.orange,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(bottom: 8, left: 5, right: 5),
+                        alignment: Alignment.centerLeft,
+                        child:
+                            Text("Cant la nunti sau evenimente muzica clasica",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.black,
+                                )),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "\200 RON",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.lightBlue[700]),
+                            ),
+                            Icon(
+                              Icons.shopping_cart,
+                              color: Colors.lightBlue[700],
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
       ),
 
       //bottom navigation bar
