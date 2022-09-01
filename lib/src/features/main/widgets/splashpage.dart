@@ -15,10 +15,17 @@ class SplashPage extends StatelessWidget {
 
     return Scaffold(
       body: Container(
-        color: Color(0xFFFFB300),
-        alignment: Alignment.center,
-        child: Icon(Icons.favorite, color: Colors.white, size: 100),
-      ),
+          color: Color(0xFFFFB300),
+          alignment: Alignment.center,
+          child: Stack(children: [
+            Center(
+              child: Image.asset(
+                "assets/images/logoomdarb.png",
+                height: 200,
+                width: 200,
+              ),
+            ),
+          ])),
     );
   }
 }

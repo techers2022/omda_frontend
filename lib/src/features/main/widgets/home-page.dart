@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:omda_frontend/src/features/authentication/widgets/login-page.dart';
 import 'package:omda_frontend/src/features/authentication/widgets/register-page.dart';
 import 'package:omda_frontend/src/features/do-work/widgets/detailed-view-do-work-page.dart';
 import 'package:omda_frontend/src/features/do-work/widgets/search-do-work-page.dart';
-import 'package:omda_frontend/src/features/get-work/widgets/detailed-view-get-work-page.dart';
+import 'package:omda_frontend/src/features/main/widgets/data.dart';
+import 'package:omda_frontend/src/features/main/widgets/category.dart';
 import 'package:omda_frontend/src/features/get-work/widgets/search-get-work-page.dart';
 import 'package:omda_frontend/src/features/info-app/widgets/about-page.dart';
 import 'package:omda_frontend/src/features/info-app/widgets/customer-service-page.dart';
@@ -12,6 +14,8 @@ import 'package:omda_frontend/src/features/profile/widgets/profile_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  //List<Category> categories = Data.getMockedCategories();
 
   // This widget is the root of your application.
   @override
@@ -23,7 +27,7 @@ class HomePage extends StatelessWidget {
           {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const HomePage()),
+              MaterialPageRoute(builder: (_) => HomePage()),
             );
           }
           break;
@@ -178,7 +182,7 @@ class HomePage extends StatelessWidget {
           Expanded(
             child: ListView.builder(
                 itemCount: 5,
-                itemBuilder: (BuildContext ctx, int index) {
+                itemBuilder: (BuildContext ctx, int indexx) {
                   return Container(
                     margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
                     height: 150,
@@ -188,8 +192,7 @@ class HomePage extends StatelessWidget {
                           Positioned.fill(
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(20),
-                              child: Image.asset(
-                                  'assets/images/gardeningcat.jpg',
+                              child: Image.asset('assets/images/ITcat.jpg',
                                   fit: BoxFit.cover),
                             ),
                           ),
@@ -223,7 +226,7 @@ class HomePage extends StatelessWidget {
                                       child: Container(
                                         color: Colors.red,
                                         padding: EdgeInsets.all(10),
-                                        child: Icon(Icons.favorite,
+                                        child: Icon(Icons.nature,
                                             color: Colors.white, size: 30),
                                       ),
                                     ),
@@ -231,7 +234,7 @@ class HomePage extends StatelessWidget {
                                       width: 10,
                                     ),
                                     Text(
-                                      'Gradinarit',
+                                      'categories[indexx].name',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 25,

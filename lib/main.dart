@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:omda_frontend/src/features/main/widgets/splashpage.dart';
 import 'package:omda_frontend/src/features/main/widgets/home-page.dart';
 
 void main() {
@@ -14,6 +15,9 @@ void main() {
       //   bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
       // ),
     ),
-    home: const HomePage(),
+   home: SplashPage(
+      duration: 2,
+      goToPage: HomePage(),
+    ),
   ));
 }
