@@ -62,7 +62,7 @@ class _ProfilePageState extends State<ProfilePage> {
           primary: Colors.amber,
         ),
         onPressed: () {},
-        child: const Text("Upgrade To PRO"),
+        child: const Text("Upgrade To Premium"),
       );
 
   Widget buildAbout() => Container(
