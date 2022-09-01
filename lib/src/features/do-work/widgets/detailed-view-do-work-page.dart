@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:omda_frontend/src/features/do-work/widgets/search-do-work-page.dart';
 
 class DetailedViewDoWorkPage extends StatelessWidget {
   const DetailedViewDoWorkPage({Key? key}) : super(key: key);
@@ -28,10 +29,19 @@ class DetailedViewDoWorkPage extends StatelessWidget {
               top: 15,
               child: Row(
                 children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.arrow_back),
-                    color: Colors.white,
+                  InkWell(
+                    hoverColor: Colors.black,
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => const SearchGetWorkPage()),
+                        );
+                      },
+                      icon: Icon(Icons.arrow_back),
+                      color: Colors.white,
+                    ),
                   )
                 ],
               ),

@@ -77,7 +77,7 @@ class SearchGetWorkPage extends StatelessWidget {
     ];
     SearchGetWorkPage createState() => const SearchGetWorkPage();
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
           // The search area here
@@ -183,9 +183,9 @@ class SearchGetWorkPage extends StatelessWidget {
           Column(
             children: [
               Container(
-                padding: EdgeInsets.only(top: 10),
-                width: 80,
-                height: 30,
+                margin: EdgeInsets.only(top: 10),
+                width: 100,
+                height: 48,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     color: Color(0xFFFFB300)),
@@ -214,6 +214,8 @@ class SearchGetWorkPage extends StatelessWidget {
                             dropdownvalue = newValue!;
                           });
                         },
+                        borderRadius: BorderRadius.circular(20),
+                        dropdownColor: Color(0xFFFFB300),
                       ),
                     ],
                   ),
