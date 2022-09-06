@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:omda_frontend/src/features/authentication/widgets/login-page.dart';
-import 'package:omda_frontend/src/features/authentication/widgets/register-page.dart';
 import 'package:omda_frontend/src/features/do-work/widgets/detailed-view-do-work-page.dart';
-import 'package:omda_frontend/src/features/do-work/widgets/search-do-work-page.dart';
-import 'package:omda_frontend/src/features/get-work/widgets/detailed-view-get-work-page.dart';
 import 'package:omda_frontend/src/features/get-work/widgets/search-get-work-page.dart';
 import 'package:omda_frontend/src/features/info-app/widgets/about-page.dart';
 import 'package:omda_frontend/src/features/info-app/widgets/customer-service-page.dart';
 import 'package:omda_frontend/src/features/post-work/widgets/post-work-page.dart';
 import 'package:omda_frontend/src/features/main/widgets/home-page.dart';
+import 'package:omda_frontend/src/features/profile/widgets/profile-page.dart';
 
-class SearchGetWorkPage extends StatelessWidget {
-  const SearchGetWorkPage({Key? key}) : super(key: key);
+class SearchDoWorkPage extends StatelessWidget {
+  const SearchDoWorkPage({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -24,7 +22,7 @@ class SearchGetWorkPage extends StatelessWidget {
           {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const HomePage()),
+              MaterialPageRoute(builder: (_) => HomePage()),
             );
           }
           break;
@@ -33,7 +31,7 @@ class SearchGetWorkPage extends StatelessWidget {
           {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const SearchGetWorkPage()),
+              MaterialPageRoute(builder: (_) => const SearchDoWorkPage()),
             );
           }
           break;
@@ -42,7 +40,7 @@ class SearchGetWorkPage extends StatelessWidget {
           {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const SearchDoWorkPage()),
+              MaterialPageRoute(builder: (_) => const SearchGetWorkPage()),
             );
           }
           break;
@@ -58,22 +56,30 @@ class SearchGetWorkPage extends StatelessWidget {
           {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const HomePage()),
+              MaterialPageRoute(builder: (_) => HomePage()),
             );
           }
           break;
       }
     }
 
-    String dropdownvalue = 'Item 1';
+    String dropdownvalue = 'Categorii';
+    String dropdownvalue2 = 'Sorteaza';
 
     // List of items in our dropdown menu
     var items = [
-      'Item 1',
-      'Item 2',
-      'Item 3',
-      'Item 4',
-      'Item 5',
+      'Categorii',
+      'Gradinarit',
+      'IT',
+      'Carat',
+      'Constructii',
+      'Design',
+    ];
+    var items2 = [
+      'Sorteaza',
+      'Pret',
+      'Durata',
+      'Data',
     ];
     SearchGetWorkPage createState() => const SearchGetWorkPage();
     return Scaffold(
@@ -90,7 +96,7 @@ class SearchGetWorkPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => const LoginPage()),
+                  MaterialPageRoute(builder: (_) => HomePage()),
                 );
               },
             ),
@@ -144,7 +150,7 @@ class SearchGetWorkPage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => const LoginPage()),
+                  MaterialPageRoute(builder: (_) => const ProfilePage()),
                 );
               },
             ),
@@ -173,6 +179,18 @@ class SearchGetWorkPage extends StatelessWidget {
                 );
               },
             ),
+            ListTile(
+              leading: Icon(
+                Icons.login,
+              ),
+              title: const Text('Login'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const LoginPage()),
+                );
+              },
+            ),
           ],
         ),
       ),
@@ -182,44 +200,108 @@ class SearchGetWorkPage extends StatelessWidget {
         children: [
           Column(
             children: [
-              Container(
-                margin: EdgeInsets.only(top: 10),
-                width: 100,
-                height: 48,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Color(0xFFFFB300)),
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      DropdownButton(
-                        // Initial Value
-                        value: dropdownvalue,
-
-                        // Down Arrow Icon
-                        icon: const Icon(Icons.keyboard_arrow_down),
-
-                        // Array list of items
-                        items: items.map((String items) {
-                          return DropdownMenuItem(
-                            value: items,
-                            child: Text(items),
-                          );
-                        }).toList(),
-                        // After selecting the desired option,it will
-                        // change button value to selected value
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            dropdownvalue = newValue!;
-                          });
-                        },
-                        borderRadius: BorderRadius.circular(20),
-                        dropdownColor: Color(0xFFFFB300),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: 0),
+                    width: 90,
+                    height: 48,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Color(0xFFFFB300)),
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          DropdownButton(
+                            // Initial Value
+                            value: dropdownvalue,
+                            // Down Arrow Icon
+                            icon: const Icon(
+                              Icons.keyboard_arrow_down,
+                              size: 15,
+                            ),
+                            underline: SizedBox(),
+                            // Array list of items
+                            items: items.map((String items) {
+                              return DropdownMenuItem(
+                                value: items,
+                                child: Text(items),
+                              );
+                            }).toList(),
+                            // After selecting the desired option,it will
+                            // change button value to selected value
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropdownvalue = newValue!;
+                              });
+                            },
+                            style: TextStyle(
+                                //te
+                                color: Colors.white, //Font color
+                                fontSize: 15 //font size on dropdown button
+                                ),
+                            borderRadius: BorderRadius.circular(20),
+                            dropdownColor: Color(0xFFFFB300),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                  SizedBox(
+                    width: 0,
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 0),
+                    width: 90,
+                    height: 48,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Color(0xFFFFB300)),
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          DropdownButton(
+                            // Initial Value
+                            value: dropdownvalue2,
+                            // Down Arrow Icon
+                            icon: const Icon(
+                              Icons.keyboard_arrow_down,
+                              size: 15,
+                            ),
+                            underline: SizedBox(),
+                            // Array list of items
+                            items: items2.map((String items2) {
+                              return DropdownMenuItem(
+                                value: items2,
+                                child: Text(items2),
+                              );
+                            }).toList(),
+                            // After selecting the desired option,it will
+                            // change button value to selected value
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropdownvalue2 = newValue!;
+                              });
+                            },
+                            style: TextStyle(
+                                //te
+                                color: Colors.white, //Font color
+                                fontSize: 15 //font size on dropdown button
+                                ),
+                            borderRadius: BorderRadius.circular(20),
+                            dropdownColor: Color(0xFFFFB300),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
               GridView.builder(
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -231,6 +313,8 @@ class SearchGetWorkPage extends StatelessWidget {
                 itemCount: 5,
                 itemBuilder: (BuildContext ctx, int index) {
                   return Flexible(
+                    flex: 1,
+                    fit: FlexFit.loose,
                     child: Container(
                       padding: EdgeInsets.only(
                         left: 5,

@@ -1,73 +1,267 @@
 import 'package:flutter/material.dart';
+import 'package:omda_frontend/src/features/get-work/widgets/search-get-work-page.dart';
+import 'package:omda_frontend/src/features/profile/widgets/profile-page.dart';
+import 'package:omda_frontend/src/features/profile/widgets/profile_widget.dart';
 
 class DetailedViewGetWorkPage extends StatelessWidget {
   const DetailedViewGetWorkPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var defaultwidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Detailed View Work Page"),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: const BackButton(
-          color: Colors.black,
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: CircleAvatar(
-              backgroundColor: Colors.white,
-              child: const Icon(
-                Icons.favorite,
-                color: Colors.red,
-              ),
-            ),
-          ),
-        ],
-      ),
-      body: Column(
+      resizeToAvoidBottomInset: false,
+      body: ListView(
         children: [
-          Image.asset(
-            'assets/images/gigel.jpg',
-            height: MediaQuery.of(context).size.height * 0.4,
-            fit: BoxFit.cover,
-          ),
-          Expanded(
-              child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-            ),
-            child: Column(
+          Container(
+            width: double.maxFinite,
+            height: MediaQuery.of(context).size.height * 1.2,
+            child: Stack(
               children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        "Tuns gazon",
-                        style: Theme.of(context).textTheme.headline6,
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    width: double.maxFinite,
+                    height: 350,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('assets/images/gigel.jpg'),
+                            fit: BoxFit.cover)),
+                  ),
+                ),
+                Positioned(
+                  left: 10,
+                  top: 15,
+                  child: Row(
+                    children: [
+                      InkWell(
+                        hoverColor: Colors.black,
+                        child: IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => const SearchGetWorkPage()),
+                            );
+                          },
+                          icon: Icon(Icons.arrow_back),
+                          color: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Positioned(
+                  top: 320,
+                  child: Container(
+                    padding:
+                        const EdgeInsets.only(left: 20, right: 20, top: 30),
+                    width: MediaQuery.of(context).size.width,
+                    height: 500,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30),
                       ),
                     ),
-                    const SizedBox(
-                      width: 50,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Cant la nunti',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.location_on,
+                                  color: Colors.lightBlue[700],
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  'Oradea',
+                                  style: TextStyle(
+                                      color: Colors.lightBlue[700],
+                                      fontWeight: FontWeight.w100),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 0,
+                        ),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Wrap(
+                                    children: List.generate(5, (index) {
+                                      return Icon(
+                                        Icons.star,
+                                        color: Colors.yellow,
+                                      );
+                                    }),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    '4.0',
+                                    style: TextStyle(
+                                        color: Colors.lightBlue[700],
+                                        fontWeight: FontWeight.w100),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                '500 Lei',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.lightBlue[700],
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ]),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              width: 80,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Color(0xFFFFB300)),
+                              child: Center(
+                                child: Text('Gradinarit'),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Container(
+                              width: 80,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Color(0xFFFFB300)),
+                              child: Center(
+                                child: Text('5 ore'),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Container(
+                              width: 80,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Color(0xFFFFB300)),
+                              child: Center(
+                                child: Text('15 Iulie'),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Container(
+                              width: 80,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Color(0xFFFFB300)),
+                              child: Center(
+                                child: Text('De la ora 16'),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Divider(color: Colors.black),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          'Descriere:',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'Caut om pentru tuns gazon, ingrijit florile, luat frunzele platesc foarte bine, am nevoie de ajutor cat mai repede, nu i mult de locru, am roaba coasa foarfeca de toate ce traba',
+                          style: TextStyle(
+                              color: Colors.black87,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w100),
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ProfileWidget(
+                              imagePath: "assets/images/gigel.jpg",
+                              onClicked: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ProfilePage()),
+                                );
+                              },
+                            ),
+                            SizedBox(width: 10),
+                            Column(
+                              children: [
+                                Text(
+                                  "Gigel Frone",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 24),
+                                ),
+                                SizedBox(height: 4),
+                                Text(
+                                  "gigel_lautar@gmail.com",
+                                  style: TextStyle(color: Colors.grey),
+                                )
+                              ],
+                            ),
+                            SizedBox(width: 10),
+                          ],
+                        ),
+                      ],
                     ),
-                    Text(
-                      '100 RON',
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: const Text(
-                      'Am nevoie urgenta de cazonul tuns, platesc bine si ofer scule'),
+                  ),
                 ),
               ],
             ),
-          ))
+          ),
         ],
       ),
     );

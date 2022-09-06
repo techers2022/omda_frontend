@@ -19,7 +19,7 @@ class WrapWidget extends StatelessWidget {
           {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const HomePage()),
+              MaterialPageRoute(builder: (_) => HomePage()),
             );
           }
           break;
@@ -53,7 +53,7 @@ class WrapWidget extends StatelessWidget {
           {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const HomePage()),
+              MaterialPageRoute(builder: (_) => HomePage()),
             );
           }
           break;

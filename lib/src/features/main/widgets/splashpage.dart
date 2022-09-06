@@ -18,13 +18,39 @@ class SplashPage extends StatelessWidget {
           color: Color(0xFFFFB300),
           alignment: Alignment.center,
           child: Stack(children: [
-            Center(
-              child: Image.asset(
-                "assets/images/logoomdarb.png",
-                height: 200,
-                width: 200,
-              ),
-            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Image.asset(
+                        "assets/images/logoomdarb.png",
+                        height: 200,
+                        width: 200,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'OMDA',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 27, 25, 25),
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold),
+                    )
+                  ],
+                )
+              ],
+            )
           ])),
     );
   }

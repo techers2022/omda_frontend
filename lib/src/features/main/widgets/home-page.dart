@@ -5,17 +5,19 @@ import 'package:omda_frontend/src/features/authentication/widgets/register-page.
 import 'package:omda_frontend/src/features/do-work/widgets/detailed-view-do-work-page.dart';
 import 'package:omda_frontend/src/features/do-work/widgets/search-do-work-page.dart';
 import 'package:omda_frontend/src/features/main/widgets/data.dart';
-import 'package:omda_frontend/src/features/main/widgets/category.dart';
+import 'package:omda_frontend/src/features/main/widgets/category.dart'
+    as Category;
 import 'package:omda_frontend/src/features/get-work/widgets/search-get-work-page.dart';
 import 'package:omda_frontend/src/features/info-app/widgets/about-page.dart';
 import 'package:omda_frontend/src/features/info-app/widgets/customer-service-page.dart';
+import 'package:omda_frontend/src/features/main/widgets/iconfont.dart';
 import 'package:omda_frontend/src/features/post-work/widgets/post-work-page.dart';
 import 'package:omda_frontend/src/features/profile/widgets/profile_page.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
-  //List<Category> categories = Data.getMockedCategories();
+  List<Category.Category> categories = Data.getMockedCategories();
 
   // This widget is the root of your application.
   @override
@@ -36,7 +38,7 @@ class HomePage extends StatelessWidget {
           {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const SearchGetWorkPage()),
+              MaterialPageRoute(builder: (_) => const SearchDoWorkPage()),
             );
           }
           break;
@@ -45,7 +47,7 @@ class HomePage extends StatelessWidget {
           {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const SearchDoWorkPage()),
+              MaterialPageRoute(builder: (_) => const SearchGetWorkPage()),
             );
           }
           break;
@@ -61,7 +63,7 @@ class HomePage extends StatelessWidget {
           {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const HomePage()),
+              MaterialPageRoute(builder: (_) => HomePage()),
             );
           }
           break;
@@ -80,7 +82,7 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => const LoginPage()),
+                  MaterialPageRoute(builder: (_) => HomePage()),
                 );
               },
             ),
@@ -163,6 +165,18 @@ class HomePage extends StatelessWidget {
                 );
               },
             ),
+            ListTile(
+              leading: Icon(
+                Icons.login,
+              ),
+              title: const Text('Login'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const LoginPage()),
+                );
+              },
+            ),
           ],
         ),
       ),
@@ -181,8 +195,9 @@ class HomePage extends StatelessWidget {
           ),
           Expanded(
             child: ListView.builder(
-                itemCount: 5,
+                itemCount: categories.length,
                 itemBuilder: (BuildContext ctx, int indexx) {
+                  var cat = categories[indexx].icon;
                   return Container(
                     margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
                     height: 150,
@@ -192,7 +207,10 @@ class HomePage extends StatelessWidget {
                           Positioned.fill(
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(20),
-                              child: Image.asset('assets/images/ITcat.jpg',
+                              child: Image.asset(
+                                  'assets/images/' +
+                                      categories[indexx].imgname +
+                                      '.jpg',
                                   fit: BoxFit.cover),
                             ),
                           ),
@@ -226,7 +244,7 @@ class HomePage extends StatelessWidget {
                                       child: Container(
                                         color: Colors.red,
                                         padding: EdgeInsets.all(10),
-                                        child: Icon(Icons.nature,
+                                        child: Icon(Icons.favorite,
                                             color: Colors.white, size: 30),
                                       ),
                                     ),
@@ -234,7 +252,7 @@ class HomePage extends StatelessWidget {
                                       width: 10,
                                     ),
                                     Text(
-                                      'categories[indexx].name',
+                                      categories[indexx].name,
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 25,
