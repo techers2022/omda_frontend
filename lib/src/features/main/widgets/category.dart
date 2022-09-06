@@ -1,5 +1,4 @@
-/*import 'dart:ui';
-import 'package:omda_frontend/src/features/main/widgets/data.dart';
+import 'dart:ui';
 
 class Category {
   String name;
@@ -7,5 +6,9 @@ class Category {
   Color color;
   String imgname;
 
-  Category({this.name, this.icon, this.color, this.imgname});
-}*/
+  Category(
+      {required this.name,
+      required this.icon,
+      required this.color,
+      required this.imgname});
+}
