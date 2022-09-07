@@ -9,21 +9,23 @@ import 'package:omda_frontend/src/features/info-app/widgets/about-page.dart';
 import 'package:omda_frontend/src/features/info-app/widgets/customer-service-page.dart';
 import 'package:omda_frontend/src/features/post-work/widgets/post-work-page.dart';
 import 'package:omda_frontend/src/features/main/widgets/home-page.dart';
+import 'package:omda_frontend/src/features/profile/widgets/profile-page.dart';
 
-class SearchDoWorkPage extends StatelessWidget {
-  const SearchDoWorkPage({Key? key}) : super(key: key);
+class SearchGetWorkPage extends StatelessWidget {
+  const SearchGetWorkPage({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     //Selectia unei pagini din navigation bar
+
     void _onItemTapped(int index) {
       switch (index) {
         case 0:
           {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const HomePage()),
+              MaterialPageRoute(builder: (_) => HomePage()),
             );
           }
           break;
@@ -32,7 +34,7 @@ class SearchDoWorkPage extends StatelessWidget {
           {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const SearchGetWorkPage()),
+              MaterialPageRoute(builder: (_) => const SearchDoWorkPage()),
             );
           }
           break;
@@ -41,7 +43,7 @@ class SearchDoWorkPage extends StatelessWidget {
           {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const SearchDoWorkPage()),
+              MaterialPageRoute(builder: (_) => const SearchGetWorkPage()),
             );
           }
           break;
@@ -57,13 +59,32 @@ class SearchDoWorkPage extends StatelessWidget {
           {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const HomePage()),
+              MaterialPageRoute(builder: (_) => HomePage()),
             );
           }
           break;
       }
     }
 
+    String dropdownvalue = 'Categorii';
+    String dropdownvalue2 = 'Sorteaza';
+
+    // List of items in our dropdown menu
+    var items = [
+      'Categorii',
+      'Gradinarit',
+      'IT',
+      'Carat',
+      'Constructii',
+      'Design',
+    ];
+    var items2 = [
+      'Sorteaza',
+      'Pret',
+      'Durata',
+      'Data',
+    ];
+    SearchGetWorkPage createState() => const SearchGetWorkPage();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
@@ -78,7 +99,7 @@ class SearchDoWorkPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => const LoginPage()),
+                  MaterialPageRoute(builder: (_) => HomePage()),
                 );
               },
             ),
@@ -132,7 +153,7 @@ class SearchDoWorkPage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => const LoginPage()),
+                  MaterialPageRoute(builder: (_) => const ProfilePage()),
                 );
               },
             ),
@@ -161,133 +182,254 @@ class SearchDoWorkPage extends StatelessWidget {
                 );
               },
             ),
+            ListTile(
+              leading: Icon(
+                Icons.login,
+              ),
+              title: const Text('Login'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const LoginPage()),
+                );
+              },
+            ),
           ],
         ),
       ),
       // page content
-      body: Column(
-        children: [
-          DecoratedBox(
-              decoration: BoxDecoration(
-                color: Color(0xFFFFB300), //background color of dropdown button
-                //border of dropdown button
-                borderRadius: BorderRadius.circular(
-                    50), //border raiuds of dropdown button
-              ),
-              child: Padding(
-                  padding: EdgeInsets.only(left: 30, right: 30),
-                  child: DropdownButton(
-                    value: "United",
-                    items: [
-                      //add items in the dropdown
-                      DropdownMenuItem(
-                        child: Text("United"),
-                        value: "United",
-                      ),
-                      DropdownMenuItem(child: Text("Canada"), value: "Canada"),
-                      DropdownMenuItem(
-                        child: Text("Russia"),
-                        value: "Russia",
-                      )
-                    ],
-                    onChanged: (value) {
-                      //get value when changed
-                      print("You have selected $value");
-                    },
-                    icon: Padding(
-                        //Icon at tail, arrow bottom is default icon
-                        padding: EdgeInsets.only(left: 20),
-                        child: Icon(Icons.arrow_circle_down_sharp)),
-                    iconEnabledColor: Colors.white, //Icon color
-                    style: TextStyle(
-                        //te
-                        color: Colors.white, //Font color
-                        fontSize: 20 //font size on dropdown button
-                        ),
 
-                    dropdownColor:
-                        Color(0xFFFFB300), //dropdown background color
-                    underline: Container(), //remove underline
-                    isExpanded: true, //make true to make width 100%
-                  ))),
-          GridView.builder(
-            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 200,
-                childAspectRatio: 0.68,
-                crossAxisSpacing: 0,
-                mainAxisSpacing: 0),
-            shrinkWrap: true,
-            itemCount: 5,
-            itemBuilder: (BuildContext ctx, int index) {
-              return Expanded(
-                child: Container(
-                  padding: EdgeInsets.only(
-                    left: 5,
-                    right: 5,
-                    top: 5,
-                  ),
-                  margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Column(
-                    children: [
-                      InkWell(
-                        onTap: () {},
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset('assets/images/gigel.jpg',
-                              height: 100, width: 200, fit: BoxFit.cover),
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(
-                            bottom: 8, top: 10, left: 10, right: 10),
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Cant la nunti",
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.orange,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(bottom: 8, left: 5, right: 5),
-                        alignment: Alignment.centerLeft,
-                        child:
-                            Text("Cant la nunti sau evenimente muzica clasica",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.black,
-                                )),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "\200 RON",
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.lightBlue[700]),
+      body: ListView(
+        children: [
+          Column(
+            children: [
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: 0),
+                    width: 90,
+                    height: 48,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Color(0xFFFFB300)),
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          DropdownButton(
+                            // Initial Value
+                            value: dropdownvalue,
+                            // Down Arrow Icon
+                            icon: const Icon(
+                              Icons.keyboard_arrow_down,
+                              size: 15,
                             ),
-                            Icon(
-                              Icons.shopping_cart,
-                              color: Colors.lightBlue[700],
-                            )
+                            underline: SizedBox(),
+                            // Array list of items
+                            items: items.map((String items) {
+                              return DropdownMenuItem(
+                                value: items,
+                                child: Text(items),
+                              );
+                            }).toList(),
+                            // After selecting the desired option,it will
+                            // change button value to selected value
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropdownvalue = newValue!;
+                              });
+                            },
+                            style: TextStyle(
+                                //te
+                                color: Colors.white, //Font color
+                                fontSize: 15 //font size on dropdown button
+                                ),
+                            borderRadius: BorderRadius.circular(20),
+                            dropdownColor: Color(0xFFFFB300),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 0,
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 0),
+                    width: 90,
+                    height: 48,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Color(0xFFFFB300)),
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          DropdownButton(
+                            // Initial Value
+                            value: dropdownvalue2,
+                            // Down Arrow Icon
+                            icon: const Icon(
+                              Icons.keyboard_arrow_down,
+                              size: 15,
+                            ),
+                            underline: SizedBox(),
+                            // Array list of items
+                            items: items2.map((String items2) {
+                              return DropdownMenuItem(
+                                value: items2,
+                                child: Text(items2),
+                              );
+                            }).toList(),
+                            // After selecting the desired option,it will
+                            // change button value to selected value
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropdownvalue2 = newValue!;
+                              });
+                            },
+                            style: TextStyle(
+                                //te
+                                color: Colors.white, //Font color
+                                fontSize: 15 //font size on dropdown button
+                                ),
+                            borderRadius: BorderRadius.circular(20),
+                            dropdownColor: Color(0xFFFFB300),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              GridView.builder(
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 210,
+                    childAspectRatio: 0.68,
+                    crossAxisSpacing: 0,
+                    mainAxisSpacing: 0),
+                shrinkWrap: true,
+                itemCount: 5,
+                itemBuilder: (BuildContext ctx, int index) {
+                  return Flexible(
+                    flex: 1,
+                    fit: FlexFit.loose,
+                    child: Container(
+                      padding: EdgeInsets.only(
+                        left: 5,
+                        right: 5,
+                        top: 5,
+                      ),
+                      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) =>
+                                    const DetailedViewGetWorkPage()),
+                          );
+                        },
+                        child: Column(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.asset('assets/images/gigel.jpg',
+                                  height: 100, width: 200, fit: BoxFit.cover),
+                            ),
+                            Container(
+                              padding: EdgeInsets.only(
+                                  bottom: 8, top: 10, left: 10, right: 10),
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "Cant la nunti",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.orange,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding:
+                                  EdgeInsets.only(bottom: 8, left: 5, right: 5),
+                              alignment: Alignment.centerLeft,
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.location_on,
+                                    size: 13,
+                                    color: Colors.lightBlue[700],
+                                  ),
+                                  SizedBox(
+                                    width: 2,
+                                  ),
+                                  Text(
+                                    'Oradea',
+                                    style: TextStyle(
+                                        color: Colors.lightBlue[700],
+                                        fontWeight: FontWeight.w100,
+                                        fontSize: 10),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              padding:
+                                  EdgeInsets.only(bottom: 8, left: 5, right: 5),
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                  "Cant muzica clasica cu piscat de coarde",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black,
+                                  )),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 10),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "\5000 RON",
+                                    style: TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.lightBlue[700]),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(Icons.access_time,
+                                          size: 12,
+                                          color: Colors.lightBlue[700]),
+                                      Text(
+                                        "5 Hrs",
+                                        style: TextStyle(
+                                            fontSize: 10,
+                                            color: Colors.lightBlue[700]),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                ),
-              );
-            },
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
         ],
       ),
@@ -317,4 +459,6 @@ class SearchDoWorkPage extends StatelessWidget {
       ),
     );
   }
+
+  void setState(Null Function() param0) {}
 }
