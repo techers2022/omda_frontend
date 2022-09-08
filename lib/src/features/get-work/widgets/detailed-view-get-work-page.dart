@@ -134,7 +134,7 @@ class DetailedViewGetWorkPage extends StatelessWidget {
                                 ],
                               ),
                               Text(
-                                '500 Lei',
+                                '5000 Lei',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: Colors.lightBlue[700],
@@ -154,7 +154,7 @@ class DetailedViewGetWorkPage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(15),
                                   color: Color(0xFFFFB300)),
                               child: Center(
-                                child: Text('Gradinarit'),
+                                child: Text('Evenimente'),
                               ),
                             ),
                             SizedBox(
@@ -167,7 +167,7 @@ class DetailedViewGetWorkPage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(15),
                                   color: Color(0xFFFFB300)),
                               child: Center(
-                                child: Text('5 ore'),
+                                child: Text('7 ore'),
                               ),
                             ),
                             SizedBox(
@@ -180,7 +180,7 @@ class DetailedViewGetWorkPage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(15),
                                   color: Color(0xFFFFB300)),
                               child: Center(
-                                child: Text('15 Iulie'),
+                                child: Text('Oricand'),
                               ),
                             ),
                             SizedBox(
@@ -193,7 +193,7 @@ class DetailedViewGetWorkPage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(15),
                                   color: Color(0xFFFFB300)),
                               child: Center(
-                                child: Text('De la ora 16'),
+                                child: Text('Orice ora'),
                               ),
                             ),
                           ],
@@ -216,7 +216,7 @@ class DetailedViewGetWorkPage extends StatelessWidget {
                           height: 10,
                         ),
                         Text(
-                          'Caut om pentru tuns gazon, ingrijit florile, luat frunzele platesc foarte bine, am nevoie de ajutor cat mai repede, nu i mult de locru, am roaba coasa foarfeca de toate ce traba',
+                          'Gigel si formatia canta la nunti, botezuri, zile de nastere si alte evenimente',
                           style: TextStyle(
                               color: Colors.black87,
                               fontSize: 15,

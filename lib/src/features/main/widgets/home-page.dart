@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
           {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const SearchDoWorkPage()),
+              MaterialPageRoute(builder: (_) => SearchDoWorkPage()),
             );
           }
           break;
@@ -266,8 +266,7 @@ class HomePage extends StatelessWidget {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (_) => const SearchGetWorkPage()),
+                          MaterialPageRoute(builder: (_) => SearchDoWorkPage()),
                         );
                       },
                     ),
