@@ -6,8 +6,9 @@ import 'package:omda_frontend/src/features/do-work/widgets/jobs_data.dart';
 import 'package:omda_frontend/src/features/do-work/widgets/do_work_job.dart';
 
 class DetailedViewDoWorkPage extends StatelessWidget {
-  DetailedViewDoWorkPage({Key? key}) : super(key: key);
+  DetailedViewDoWorkPage({Key? key, required this.nr}) : super(key: key);
   List<DoWorkJobs> jobs = JobsData.getMockedJobs();
+  final int nr;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +75,7 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'jobs[nr].name',
+                              jobs[nr].name,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: Colors.black,
@@ -99,7 +100,7 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                                   width: 5,
                                 ),
                                 Text(
-                                  'Oradea',
+                                  jobs[nr].loc,
                                   style: TextStyle(
                                       color: Colors.lightBlue[700],
                                       fontWeight: FontWeight.w100),
@@ -128,7 +129,7 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                                     width: 10,
                                   ),
                                   Text(
-                                    '4.0',
+                                    jobs[nr].rating,
                                     style: TextStyle(
                                         color: Colors.lightBlue[700],
                                         fontWeight: FontWeight.w100),
@@ -136,7 +137,7 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                                 ],
                               ),
                               Text(
-                                '50 Lei',
+                                jobs[nr].price,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: Colors.lightBlue[700],
@@ -169,7 +170,7 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(15),
                                   color: Color(0xFFFFB300)),
                               child: Center(
-                                child: Text('2-3 ore'),
+                                child: Text(jobs[nr].hours),
                               ),
                             ),
                             SizedBox(
@@ -182,7 +183,7 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(15),
                                   color: Color(0xFFFFB300)),
                               child: Center(
-                                child: Text('15 August'),
+                                child: Text(jobs[nr].date),
                               ),
                             ),
                             SizedBox(
@@ -195,7 +196,7 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(15),
                                   color: Color(0xFFFFB300)),
                               child: Center(
-                                child: Text('De la ora 16'),
+                                child: Text(jobs[nr].when),
                               ),
                             ),
                           ],
@@ -218,7 +219,7 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                           height: 10,
                         ),
                         Text(
-                          'Caut om pentru tuns gazon, ingrijit florile, luat frunzele platesc foarte bine, am nevoie de ajutor cat mai repede, nu i mult de locru, am roaba coasa foarfeca de toate ce traba',
+                          jobs[nr].longdescription,
                           style: TextStyle(
                               color: Colors.black87,
                               fontSize: 15,

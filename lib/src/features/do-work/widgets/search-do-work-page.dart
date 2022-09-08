@@ -332,7 +332,8 @@ class SearchDoWorkPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (_) => DetailedViewDoWorkPage()),
+                                builder: (_) =>
+                                    DetailedViewDoWorkPage(nr: index)),
                           );
                         },
                         child: Column(
