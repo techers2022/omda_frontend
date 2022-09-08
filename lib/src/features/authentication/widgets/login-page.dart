@@ -174,7 +174,7 @@ class _LoginPageState extends State<LoginPage> {
                       );
                     },
                     child: const Text(
-                      'Already have an account?',
+                      'You do not have an account?',
                       style: TextStyle(
                           color: Color.fromRGBO(143, 148, 251, 1),
                           fontWeight: FontWeight.normal),

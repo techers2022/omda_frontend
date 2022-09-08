@@ -34,7 +34,7 @@ class SearchGetWorkPage extends StatelessWidget {
           {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const SearchDoWorkPage()),
+              MaterialPageRoute(builder: (_) => SearchDoWorkPage()),
             );
           }
           break;

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:omda_frontend/src/features/do-work/widgets/search-do-work-page.dart';
 import 'package:omda_frontend/src/features/profile/widgets/profile-page.dart';
 import 'package:omda_frontend/src/features/profile/widgets/profile_widget.dart';
+import 'package:omda_frontend/src/features/do-work/widgets/jobs_data.dart';
+import 'package:omda_frontend/src/features/do-work/widgets/do_work_job.dart';
 
 class DetailedViewDoWorkPage extends StatelessWidget {
-  const DetailedViewDoWorkPage({Key? key}) : super(key: key);
-
+  DetailedViewDoWorkPage({Key? key}) : super(key: key);
+  List<DoWorkJobs> jobs = JobsData.getMockedJobs();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +43,7 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (_) => const SearchDoWorkPage()),
+                                  builder: (_) => SearchDoWorkPage()),
                             );
                           },
                           icon: Icon(Icons.arrow_back),
@@ -72,7 +74,7 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Dat cu grebla',
+                              'jobs[nr].name',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: Colors.black,
@@ -134,7 +136,7 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                                 ],
                               ),
                               Text(
-                                '250 Lei',
+                                '50 Lei',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: Colors.lightBlue[700],

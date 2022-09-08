@@ -7,10 +7,12 @@ import 'package:omda_frontend/src/features/info-app/widgets/customer-service-pag
 import 'package:omda_frontend/src/features/post-work/widgets/post-work-page.dart';
 import 'package:omda_frontend/src/features/main/widgets/home-page.dart';
 import 'package:omda_frontend/src/features/profile/widgets/profile-page.dart';
+import 'package:omda_frontend/src/features/do-work/widgets/do_work_job.dart';
+import 'package:omda_frontend/src/features/do-work/widgets/jobs_data.dart';
 
 class SearchDoWorkPage extends StatelessWidget {
-  const SearchDoWorkPage({Key? key}) : super(key: key);
-
+  SearchDoWorkPage({Key? key}) : super(key: key);
+  List<DoWorkJobs> jobs = JobsData.getMockedJobs();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class SearchDoWorkPage extends StatelessWidget {
           {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const SearchDoWorkPage()),
+              MaterialPageRoute(builder: (_) => SearchDoWorkPage()),
             );
           }
           break;
@@ -310,7 +312,7 @@ class SearchDoWorkPage extends StatelessWidget {
                     crossAxisSpacing: 0,
                     mainAxisSpacing: 0),
                 shrinkWrap: true,
-                itemCount: 5,
+                itemCount: jobs.length,
                 itemBuilder: (BuildContext ctx, int index) {
                   return Flexible(
                     flex: 1,
@@ -330,7 +332,7 @@ class SearchDoWorkPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (_) => const DetailedViewDoWorkPage()),
+                                builder: (_) => DetailedViewDoWorkPage()),
                           );
                         },
                         child: Column(
@@ -345,7 +347,7 @@ class SearchDoWorkPage extends StatelessWidget {
                                   bottom: 8, top: 10, left: 10, right: 10),
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                "Ajutor tuns gazon",
+                                jobs[index].name,
                                 style: TextStyle(
                                   fontSize: 15,
                                   color: Colors.orange,
@@ -368,7 +370,7 @@ class SearchDoWorkPage extends StatelessWidget {
                                     width: 2,
                                   ),
                                   Text(
-                                    'Oradea',
+                                    jobs[index].loc,
                                     style: TextStyle(
                                         color: Colors.lightBlue[700],
                                         fontWeight: FontWeight.w100,
@@ -381,8 +383,7 @@ class SearchDoWorkPage extends StatelessWidget {
                               padding:
                                   EdgeInsets.only(bottom: 8, left: 5, right: 5),
                               alignment: Alignment.centerLeft,
-                              child: Text(
-                                  "Am nevoie de cineva sa imi tunda gazonul",
+                              child: Text(jobs[index].shortdescription,
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: Colors.black,
@@ -396,14 +397,14 @@ class SearchDoWorkPage extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "\50 RON",
+                                    jobs[index].price,
                                     style: TextStyle(
                                         fontSize: 13,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.lightBlue[700]),
                                   ),
                                   Text(
-                                    "2.5 Hrs",
+                                    jobs[index].hours,
                                     style: TextStyle(
                                         fontSize: 10,
                                         color: Colors.lightBlue[700]),
