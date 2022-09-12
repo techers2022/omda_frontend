@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:omda_frontend/src/features/authentication/services/auth.service.dart';
 import 'package:omda_frontend/src/features/authentication/widgets/register-page.dart';
+import 'package:omda_frontend/src/features/main/widgets/home-page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -10,12 +11,13 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   void loginUser(BuildContext context) async {
-    if (await AuthService().loginUser(nameController.text)) {
-      Navigator.pop(context);
+    if (await AuthService().loginUser(emailController.text, passwordController.text)) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (_) => HomePage()));
     } else {
       showDialog(
         context: context,
@@ -116,15 +118,17 @@ class _LoginPageState extends State<LoginPage> {
                                 bottom: BorderSide(color: Color(0xFFF5F5F5))),
                           ),
                           child: TextField(
+                            controller: emailController,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
-                                hintText: "Email or Phone number",
+                                hintText: "Email",
                                 hintStyle: TextStyle(color: Colors.grey[400])),
                           ),
                         ),
                         Container(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
+                            controller: passwordController,
                             obscureText: true,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
