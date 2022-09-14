@@ -15,7 +15,7 @@ class UserModel {
   String email;
   String firstName;
   String lastName;
-  String description;
+  String? description;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         id: json["id"],

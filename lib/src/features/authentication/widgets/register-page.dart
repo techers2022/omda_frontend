@@ -1,9 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:omda_frontend/src/features/authentication/services/auth.service.dart';
+import 'package:omda_frontend/src/features/authentication/widgets/login-page.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+
+  void registerUser(BuildContext context) async {
+    if (await AuthService().registerUser(
+        emailController.text,
+        firstNameController.text,
+        lastNameController.text,
+        passwordController.text,
+        confirmPasswordController.text)) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (_) => const LoginPage()));
+
+      showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+          content: Text(
+              textAlign: TextAlign.center,
+              "Account created successfully"),
+        ),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+          content: Text(
+              textAlign: TextAlign.center,
+              "Something went wrong. Please try again"),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,9 +137,10 @@ class RegisterPage extends StatelessWidget {
                             ),
                           ),
                           child: TextField(
+                            controller: emailController,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: "Email or Phone number",
+                              hintText: "Email",
                               hintStyle: TextStyle(color: Colors.grey[400]),
                             ),
                           ),
@@ -119,6 +163,7 @@ class RegisterPage extends StatelessWidget {
                                     ),
                                   ),
                                   child: TextField(
+                                    controller: firstNameController,
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
                                       hintText: "First Name",
@@ -133,6 +178,7 @@ class RegisterPage extends StatelessWidget {
                                   padding: const EdgeInsets.fromLTRB(
                                       8.0, 0.0, 0.0, 0.0),
                                   child: TextField(
+                                    controller: lastNameController,
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
                                       hintText: "Last Name",
@@ -153,20 +199,7 @@ class RegisterPage extends StatelessWidget {
                             ),
                           ),
                           child: TextField(
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "Last Name",
-                                hintStyle: TextStyle(color: Colors.grey[400])),
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(8.0),
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(color: Color(0xFFF5F5F5)),
-                            ),
-                          ),
-                          child: TextField(
+                            controller: passwordController,
                             obscureText: true,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -178,6 +211,7 @@ class RegisterPage extends StatelessWidget {
                         Container(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
+                            controller: confirmPasswordController,
                             obscureText: true,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -194,7 +228,9 @@ class RegisterPage extends StatelessWidget {
                   ),
                   Center(
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        registerUser(context);
+                      },
                       child: Container(
                         height: 50,
                         decoration: BoxDecoration(

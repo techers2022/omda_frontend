@@ -23,7 +23,7 @@ class _ProfilePageState extends State<ProfilePage> {
         physics: const BouncingScrollPhysics(),
         children: [
           ProfileWidget(
-            imagePath: "assets/images/profile-pic.jpeg",
+            imagePath: "assets/images/default-profile-icon.png",
             onClicked: () {
               Navigator.of(context).push(
                 MaterialPageRoute(

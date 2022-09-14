@@ -29,4 +29,26 @@ class AuthService {
     }
     return false;
   }
+
+  Future<bool> registerUser(String email, String firstName, String lastName,
+      String password, String confirmPassword) async {
+    try {
+      var url = Uri.parse('${ApiConstants.baseUrl}/register');
+      var response = await http.post(url,
+          headers: {"Content-Type": "application/json"},
+          body: json.encode({
+            "email": email,
+            "password": password,
+            "firstName": firstName,
+            "lastName": lastName
+          }));
+
+      if (response.statusCode == 200) {
+        return true;
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+    return false;
+  }
 }
