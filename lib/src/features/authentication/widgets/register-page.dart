@@ -25,8 +25,7 @@ class _RegisterPageState extends State<RegisterPage> {
         lastNameController.text,
         passwordController.text,
         confirmPasswordController.text)) {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (_) => const LoginPage()));
+      Navigator.pop(context);
 
       showDialog(
         context: context,

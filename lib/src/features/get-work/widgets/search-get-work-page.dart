@@ -10,6 +10,7 @@ import 'package:omda_frontend/src/features/info-app/widgets/customer-service-pag
 import 'package:omda_frontend/src/features/post-work/widgets/post-work-page.dart';
 import 'package:omda_frontend/src/features/main/widgets/home-page.dart';
 import 'package:omda_frontend/src/features/profile/widgets/profile-page.dart';
+import 'package:omda_frontend/src/shared/helper.dart';
 
 class SearchGetWorkPage extends StatelessWidget {
   const SearchGetWorkPage({Key? key}) : super(key: key);
@@ -188,10 +189,7 @@ class SearchGetWorkPage extends StatelessWidget {
               ),
               title: const Text('Login'),
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const LoginPage()),
-                );
+                logout(context);
               },
             ),
           ],
