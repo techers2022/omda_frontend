@@ -1,4 +1,4 @@
-import 'dart:html';
+/*import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:omda_frontend/api.service.dart';
 import 'package:omda_frontend/pages/categorylistpage.dart';
@@ -119,3 +119,4 @@ class WelcomePage extends StatelessWidget {
             )));
   }
 }
+*/

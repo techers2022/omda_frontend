@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:omda_frontend/src/features/do-work/widgets/search-do-work-page.dart';
+import 'package:omda_frontend/src/features/main/widgets/home-page.dart';
 import 'package:omda_frontend/src/features/profile/widgets/profile-page.dart';
 import 'package:omda_frontend/src/features/profile/widgets/profile_widget.dart';
 
@@ -14,7 +15,7 @@ class DetailedViewDoWorkPage extends StatelessWidget {
         children: [
           Container(
             width: double.maxFinite,
-            height: MediaQuery.of(context).size.height * 1.2,
+            height: MediaQuery.of(context).size.height * 1.23,
             child: Stack(
               children: [
                 Positioned(
@@ -57,7 +58,7 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                     padding:
                         const EdgeInsets.only(left: 20, right: 20, top: 30),
                     width: MediaQuery.of(context).size.width,
-                    height: 500,
+                    height: 580,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
@@ -249,12 +250,38 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                                 Text(
                                   "george.balota4@gmail.com",
                                   style: TextStyle(color: Colors.grey),
-                                )
+                                ),
                               ],
                             ),
                             SizedBox(width: 10),
                           ],
                         ),
+                        SizedBox(height: 20),
+                        InkWell(
+                          child: Center(
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Expanded(
+                                child: Container(
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: Color(0xFFFFB300)),
+                                  child: Center(
+                                    child: Text('Angajeaza'),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          onTap: () => {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (_) => HomePage()),
+                            )
+                          },
+                        ),
+                        SizedBox(height: 30),
                       ],
                     ),
                   ),
