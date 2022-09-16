@@ -209,8 +209,9 @@ class SearchDoWorkPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
+                    padding: EdgeInsets.only(left: 10, right: 10),
                     margin: EdgeInsets.only(top: 0),
-                    width: 90,
+                    width: 150,
                     height: 48,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
@@ -222,6 +223,8 @@ class SearchDoWorkPage extends StatelessWidget {
                           DropdownButton(
                             // Initial Value
                             value: dropdownvalue,
+                            isExpanded: true,
+
                             // Down Arrow Icon
                             icon: const Icon(
                               Icons.keyboard_arrow_down,
@@ -258,8 +261,9 @@ class SearchDoWorkPage extends StatelessWidget {
                     width: 0,
                   ),
                   Container(
+                    padding: EdgeInsets.only(left: 10, right: 10),
                     margin: EdgeInsets.only(top: 0),
-                    width: 90,
+                    width: 150,
                     height: 48,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
@@ -271,6 +275,7 @@ class SearchDoWorkPage extends StatelessWidget {
                           DropdownButton(
                             // Initial Value
                             value: dropdownvalue2,
+                            isExpanded: true,
                             // Down Arrow Icon
                             icon: const Icon(
                               Icons.keyboard_arrow_down,
@@ -322,6 +327,11 @@ class SearchDoWorkPage extends StatelessWidget {
                         left: 5,
                         right: 5,
                         top: 5,
+                      ),
+                      constraints: BoxConstraints(
+                        minHeight: 400,
+                        minWidth: 300,
+                        maxHeight: 400,
                       ),
                       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
                       decoration: BoxDecoration(
