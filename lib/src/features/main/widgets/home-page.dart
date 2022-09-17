@@ -1,19 +1,10 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:omda_frontend/src/features/authentication/widgets/login-page.dart';
-import 'package:omda_frontend/src/features/authentication/widgets/register-page.dart';
-import 'package:omda_frontend/src/features/do-work/widgets/detailed-view-do-work-page.dart';
 import 'package:omda_frontend/src/features/do-work/widgets/search-do-work-page.dart';
 import 'package:omda_frontend/src/features/main/widgets/data.dart';
 import 'package:omda_frontend/src/features/main/widgets/category.dart'
     as Category;
-import 'package:omda_frontend/src/features/get-work/widgets/search-get-work-page.dart';
-import 'package:omda_frontend/src/features/info-app/widgets/about-page.dart';
-import 'package:omda_frontend/src/features/info-app/widgets/customer-service-page.dart';
-import 'package:omda_frontend/src/features/main/widgets/iconfont.dart';
-import 'package:omda_frontend/src/features/post-work/widgets/post-work-page.dart';
-import 'package:omda_frontend/src/features/profile/widgets/profile_page.dart';
-import 'package:omda_frontend/src/shared/helper.dart';
+import 'package:omda_frontend/src/shared/layout.dart';
+import 'package:omda_frontend/src/shared/theme-colors.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -23,170 +14,16 @@ class HomePage extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    //Selectia unei pagini din navigation bar
-    void _onItemTapped(int index) {
-      switch (index) {
-        case 0:
-          {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => HomePage()),
-            );
-          }
-          break;
-
-        case 1:
-          {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => SearchDoWorkPage()),
-            );
-          }
-          break;
-
-        case 2:
-          {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const SearchGetWorkPage()),
-            );
-          }
-          break;
-        case 3:
-          {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const PostWorkPage()),
-            );
-          }
-          break;
-        default:
-          {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => HomePage()),
-            );
-          }
-          break;
-      }
-    }
-
     return Scaffold(
-      appBar: AppBar(
-          // The search area here
-          backgroundColor: Color(0xFFFFB300),
-          actions: [
-            IconButton(
-              icon: Image.asset('assets/images/logoomdarb.png'),
-              iconSize: 60,
-              padding: const EdgeInsets.all(0),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => HomePage()),
-                );
-              },
-            ),
-          ],
-          title: Container(
-            margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-            width: double.infinity,
-            height: 40,
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(20)),
-            child: Center(
-              child: TextField(
-                decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.search),
-                    suffixIcon: IconButton(
-                      icon: const Icon(Icons.clear),
-                      onPressed: () {
-                        /* Clear the search field */
-                      },
-                    ),
-                    hintText: 'Search...',
-                    border: InputBorder.none),
-              ),
-            ),
-          )),
-      //navigatia drawer colt staga sus
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(
-                      "assets/images/logoomdarb.png",
-                    ),
-                    fit: BoxFit.scaleDown,
-                    alignment: Alignment.bottomRight),
-                color: Color(0xFFFFB300),
-              ),
-              child: Text(
-                'Drawer Header',
-                textAlign: TextAlign.justify,
-              ),
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.person,
-              ),
-              title: const Text('Profile'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const ProfilePage()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.contact_page_rounded,
-              ),
-              title: const Text('Customer Service'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) => const CustomerServicePage()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.volunteer_activism_rounded,
-              ),
-              title: const Text('About Us'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const AboutPage()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.login,
-              ),
-              title: const Text('Login'),
-              onTap: () {
-                logout(context);
-              },
-            ),
-          ],
-        ),
-      ),
-      // page content
-      body: Container(
-          child: Column(
+      appBar: Layout.appBar(context),
+      drawer: Layout.drawer(context),
+      body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 10, bottom: 10),
+          const Padding(
+            padding: EdgeInsets.only(top: 10, bottom: 0),
             child: Text(
-              'Choose category',
+              'Alege o categorie',
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.black),
             ),
@@ -194,10 +31,9 @@ class HomePage extends StatelessWidget {
           Expanded(
             child: ListView.builder(
                 itemCount: categories.length,
-                itemBuilder: (BuildContext ctx, int indexx) {
-                  var cat = categories[indexx].icon;
+                itemBuilder: (BuildContext ctx, int index) {
                   return Container(
-                    margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                    margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                     height: 150,
                     child: InkWell(
                       child: Stack(
@@ -206,9 +42,7 @@ class HomePage extends StatelessWidget {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(20),
                               child: Image.asset(
-                                  'assets/images/' +
-                                      categories[indexx].imgname +
-                                      '.jpg',
+                                  'assets/images/${categories[index].imgname}.jpg',
                                   fit: BoxFit.cover),
                             ),
                           ),
@@ -219,46 +53,52 @@ class HomePage extends StatelessWidget {
                             child: Container(
                               height: 120,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(20),
-                                    bottomRight: Radius.circular(20),
-                                  ),
-                                  gradient: LinearGradient(
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter,
-                                      colors: [
-                                        Colors.black.withOpacity(0.7),
-                                        Colors.transparent
-                                      ])),
+                                borderRadius: const BorderRadius.only(
+                                  bottomLeft: Radius.circular(20),
+                                  bottomRight: Radius.circular(20),
+                                ),
+                                gradient: LinearGradient(
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter,
+                                  colors: [
+                                    Colors.black.withOpacity(0.7),
+                                    Colors.transparent,
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
                           Positioned(
-                              bottom: 0,
-                              child: Padding(
-                                padding: const EdgeInsets.all(10),
-                                child: Row(
-                                  children: [
-                                    ClipOval(
-                                      child: Container(
-                                        color: Colors.red,
-                                        padding: EdgeInsets.all(10),
-                                        child: Icon(Icons.favorite,
-                                            color: Colors.white, size: 30),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      categories[indexx].name,
-                                      style: TextStyle(
+                            bottom: 0,
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Row(
+                                children: [
+                                  ClipOval(
+                                    child: Container(
+                                      color: ThemeColors.primary,
+                                      padding: const EdgeInsets.all(10),
+                                      child: Icon(
+                                        categories[index].icon,
                                         color: Colors.white,
-                                        fontSize: 25,
+                                        size: 30,
                                       ),
-                                    )
-                                  ],
-                                ),
-                              ))
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    categories[index].name,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 25,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
                         ],
                       ),
                       onTap: () {
@@ -272,31 +112,8 @@ class HomePage extends StatelessWidget {
                 }),
           )
         ],
-      )),
-
-      //bottom navigation bar
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-              backgroundColor: Color(0xFFFFB300)),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.work_outline_rounded),
-              label: 'Do-work',
-              backgroundColor: Color(0xFFFFB300)),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.engineering),
-              label: 'Get-work',
-              backgroundColor: Color(0xFFFFB300)),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.add_to_photos),
-              label: 'Add Job',
-              backgroundColor: Color(0xFFFFB300)),
-        ],
-        currentIndex: 0,
-        onTap: _onItemTapped,
       ),
+      bottomNavigationBar: Layout.bottomNavigationBar(context, 0),
     );
   }
 }

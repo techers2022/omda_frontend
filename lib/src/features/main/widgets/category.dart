@@ -1,8 +1,10 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+
 class Category {
   String name;
-  String icon;
+  IconData icon;
   Color color;
   String imgname;
 

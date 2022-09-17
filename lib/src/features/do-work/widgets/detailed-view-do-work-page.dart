@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:omda_frontend/src/features/do-work/widgets/search-do-work-page.dart';
 import 'package:omda_frontend/src/features/main/widgets/home-page.dart';
-import 'package:omda_frontend/src/features/profile/widgets/profile-page.dart';
+import 'package:omda_frontend/src/features/profile/widgets/profile_page.dart';
 import 'package:omda_frontend/src/features/profile/widgets/profile_widget.dart';
 import 'package:omda_frontend/src/features/do-work/widgets/jobs_data.dart';
 import 'package:omda_frontend/src/features/do-work/widgets/do_work_job.dart';
@@ -235,8 +235,8 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                               onClicked: () {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          const ProfilePage()),
+                                    builder: (context) => const ProfilePage(),
+                                  ),
                                 );
                               },
                             ),

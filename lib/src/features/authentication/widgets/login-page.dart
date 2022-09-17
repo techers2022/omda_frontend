@@ -88,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                     margin: const EdgeInsets.only(top: 50),
                     child: const Center(
                       child: Text(
-                        "Login",
+                        "Autentificare",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 40,
@@ -137,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
                             obscureText: true,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
-                                hintText: "Password",
+                                hintText: "Parola",
                                 hintStyle: TextStyle(color: Colors.grey[400])),
                           ),
                         )
@@ -163,7 +163,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         child: const Center(
                           child: Text(
-                            "Login",
+                            "Intră",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),
@@ -181,11 +181,14 @@ class _LoginPageState extends State<LoginPage> {
                           MaterialPageRoute(builder: (_) => HomePage()));
                     },
                     child: Text(
-                      'Enter without credentials (will be deleted)',
+                      'Intră ca invitat (fară credențiale)',
                       style: TextStyle(
                           color: ThemeColors.primaryDark,
                           fontWeight: FontWeight.normal),
                     ),
+                  ),
+                  const SizedBox(
+                    height: 40,
                   ),
                   TextButton(
                     onPressed: () {
@@ -195,7 +198,7 @@ class _LoginPageState extends State<LoginPage> {
                       );
                     },
                     child: Text(
-                      'You do not have an account?',
+                      'Nu ai cont?',
                       style: TextStyle(
                           color: ThemeColors.primaryDark,
                           fontWeight: FontWeight.normal),
@@ -207,7 +210,7 @@ class _LoginPageState extends State<LoginPage> {
                   TextButton(
                     onPressed: () {},
                     child: Text(
-                      "Forgot Password?",
+                      "Ai uitat parola?",
                       style: TextStyle(
                           color: ThemeColors.primaryDark,
                           fontWeight: FontWeight.normal),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:omda_frontend/src/features/get-work/widgets/search-get-work-page.dart';
 import 'package:omda_frontend/src/features/main/widgets/home-page.dart';
-import 'package:omda_frontend/src/features/profile/widgets/profile-page.dart';
+import 'package:omda_frontend/src/features/profile/widgets/profile_page.dart';
 import 'package:omda_frontend/src/features/profile/widgets/profile_widget.dart';
 
 class DetailedViewGetWorkPage extends StatelessWidget {
@@ -232,8 +232,8 @@ class DetailedViewGetWorkPage extends StatelessWidget {
                               onClicked: () {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          const ProfilePage()),
+                                    builder: (context) => const ProfilePage(),
+                                  ),
                                 );
                               },
                             ),

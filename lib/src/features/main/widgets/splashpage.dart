@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:omda_frontend/src/shared/theme-colors.dart';
 
 class SplashPage extends StatelessWidget {
-  int duration = 0;
-  Widget goToPage;
+  final int duration;
+  final Widget goToPage;
 
   SplashPage({required this.goToPage, required this.duration});
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration(seconds: this.duration), () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => this.goToPage));
-    });
+    Future.delayed(
+      Duration(seconds: duration),
+      () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => goToPage),
+        );
+      },
+    );
 
     return Scaffold(
       body: Container(
-          color: Color(0xFFFFB300),
+          color: ThemeColors.primary,
           alignment: Alignment.center,
           child: Stack(children: [
             Column(
@@ -28,7 +34,7 @@ class SplashPage extends StatelessWidget {
                   children: [
                     Center(
                       child: Image.asset(
-                        "assets/images/logoomdarb.png",
+                        "assets/images/logoomdarb2.png",
                         height: 200,
                         width: 200,
                       ),
@@ -38,12 +44,12 @@ class SplashPage extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Text(
                       'OMDA',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: Color.fromARGB(255, 27, 25, 25),
+                          color: Colors.white,
                           fontSize: 30,
                           fontWeight: FontWeight.bold),
                     )

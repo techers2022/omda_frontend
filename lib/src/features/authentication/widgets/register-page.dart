@@ -102,7 +102,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     margin: const EdgeInsets.only(top: 50),
                     child: const Center(
                       child: Text(
-                        "Register",
+                        "Inregistrează-te",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 40,
@@ -167,7 +167,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     controller: firstNameController,
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
-                                      hintText: "First Name",
+                                      hintText: "Prenume",
                                       hintStyle:
                                           TextStyle(color: Colors.grey[400]),
                                     ),
@@ -182,7 +182,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     controller: lastNameController,
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
-                                      hintText: "Last Name",
+                                      hintText: "Nume",
                                       hintStyle:
                                           TextStyle(color: Colors.grey[400]),
                                     ),
@@ -204,7 +204,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             obscureText: true,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: "Password",
+                              hintText: "Parola",
                               hintStyle: TextStyle(color: Colors.grey[400]),
                             ),
                           ),
@@ -216,7 +216,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             obscureText: true,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: "Confirm Password",
+                              hintText: "Confirmă parola",
                               hintStyle: TextStyle(color: Colors.grey[400]),
                             ),
                           ),
@@ -242,7 +242,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             ])),
                         child: const Center(
                           child: Text(
-                            "Create Account",
+                            "Creează cont",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),
