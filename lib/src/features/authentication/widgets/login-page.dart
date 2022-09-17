@@ -15,7 +15,8 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController passwordController = TextEditingController();
 
   void loginUser(BuildContext context) async {
-    if (await AuthService().loginUser(emailController.text, passwordController.text)) {
+    if (await AuthService()
+        .loginUser(emailController.text, passwordController.text)) {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (_) => HomePage()));
     } else {
@@ -169,6 +170,18 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(
                     height: 20,
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (_) => HomePage()));
+                    },
+                    child: const Text(
+                      'Enter without credentials (will be deleted)',
+                      style: TextStyle(
+                          color: Color.fromRGBO(143, 148, 251, 1),
+                          fontWeight: FontWeight.normal),
+                    ),
                   ),
                   TextButton(
                     onPressed: () {
