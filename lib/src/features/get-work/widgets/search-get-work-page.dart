@@ -208,8 +208,9 @@ class SearchGetWorkPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
+                    padding: EdgeInsets.only(left: 10, right: 10),
                     margin: EdgeInsets.only(top: 0),
-                    width: 90,
+                    width: 150,
                     height: 48,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
@@ -221,6 +222,8 @@ class SearchGetWorkPage extends StatelessWidget {
                           DropdownButton(
                             // Initial Value
                             value: dropdownvalue,
+                            isExpanded: true,
+
                             // Down Arrow Icon
                             icon: const Icon(
                               Icons.keyboard_arrow_down,
@@ -257,8 +260,9 @@ class SearchGetWorkPage extends StatelessWidget {
                     width: 0,
                   ),
                   Container(
+                    padding: EdgeInsets.only(left: 10, right: 10),
                     margin: EdgeInsets.only(top: 0),
-                    width: 90,
+                    width: 150,
                     height: 48,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
@@ -270,6 +274,7 @@ class SearchGetWorkPage extends StatelessWidget {
                           DropdownButton(
                             // Initial Value
                             value: dropdownvalue2,
+                            isExpanded: true,
                             // Down Arrow Icon
                             icon: const Icon(
                               Icons.keyboard_arrow_down,
