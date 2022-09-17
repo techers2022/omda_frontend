@@ -3,6 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:omda_frontend/src/features/authentication/services/auth.service.dart';
 import 'package:omda_frontend/src/features/authentication/widgets/login-page.dart';
+import 'package:omda_frontend/src/shared/theme-colors.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -30,9 +31,8 @@ class _RegisterPageState extends State<RegisterPage> {
       showDialog(
         context: context,
         builder: (context) => const AlertDialog(
-          content: Text(
-              textAlign: TextAlign.center,
-              "Account created successfully"),
+          content:
+              Text(textAlign: TextAlign.center, "Account created successfully"),
         ),
       );
     } else {
@@ -50,7 +50,9 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: const Color(0xFF4E54C8)),
+      appBar: AppBar(
+        backgroundColor: ThemeColors.primary,
+      ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
@@ -59,7 +61,7 @@ class _RegisterPageState extends State<RegisterPage> {
               height: 400,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/images/background.png'),
+                    image: AssetImage('assets/images/background3.png'),
                     fit: BoxFit.fill),
               ),
               child: Stack(
@@ -120,11 +122,11 @@ class _RegisterPageState extends State<RegisterPage> {
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
-                        boxShadow: const [
+                        boxShadow: [
                           BoxShadow(
-                              color: Color.fromRGBO(143, 148, 251, .2),
+                              color: ThemeColors.primaryDark.withAlpha(50),
                               blurRadius: 20.0,
-                              offset: Offset(0, 10))
+                              offset: const Offset(0, 10))
                         ]),
                     child: Column(
                       children: <Widget>[
@@ -223,7 +225,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 30,
                   ),
                   Center(
                     child: TextButton(
@@ -234,9 +236,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         height: 50,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            gradient: const LinearGradient(colors: [
-                              Color.fromRGBO(143, 148, 251, 1),
-                              Color.fromRGBO(143, 148, 251, .6),
+                            gradient: LinearGradient(colors: [
+                              ThemeColors.primary,
+                              ThemeColors.primaryLight,
                             ])),
                         child: const Center(
                           child: Text(

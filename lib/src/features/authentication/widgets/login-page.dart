@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:omda_frontend/src/features/authentication/services/auth.service.dart';
 import 'package:omda_frontend/src/features/authentication/widgets/register-page.dart';
 import 'package:omda_frontend/src/features/main/widgets/home-page.dart';
+import 'package:omda_frontend/src/shared/theme-colors.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -34,7 +35,9 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: const Color(0xFF4E54C8)),
+      appBar: AppBar(
+        backgroundColor: ThemeColors.primary,
+      ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
@@ -43,8 +46,9 @@ class _LoginPageState extends State<LoginPage> {
               height: 400,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/images/background.png'),
-                    fit: BoxFit.fill),
+                  image: AssetImage('assets/images/background3.png'),
+                  fit: BoxFit.fill,
+                ),
               ),
               child: Stack(
                 children: <Widget>[
@@ -104,11 +108,11 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
-                        boxShadow: const [
+                        boxShadow: [
                           BoxShadow(
-                              color: Color.fromRGBO(143, 148, 251, .2),
+                              color: ThemeColors.primaryDark.withAlpha(50),
                               blurRadius: 20.0,
-                              offset: Offset(0, 10))
+                              offset: const Offset(0, 10))
                         ]),
                     child: Column(
                       children: <Widget>[
@@ -152,9 +156,9 @@ class _LoginPageState extends State<LoginPage> {
                         height: 50,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          gradient: const LinearGradient(colors: [
-                            Color.fromRGBO(143, 148, 251, 1),
-                            Color.fromRGBO(143, 148, 251, .6),
+                          gradient: LinearGradient(colors: [
+                            ThemeColors.primary,
+                            ThemeColors.primaryLight,
                           ]),
                         ),
                         child: const Center(
@@ -176,10 +180,10 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (_) => HomePage()));
                     },
-                    child: const Text(
+                    child: Text(
                       'Enter without credentials (will be deleted)',
                       style: TextStyle(
-                          color: Color.fromRGBO(143, 148, 251, 1),
+                          color: ThemeColors.primaryDark,
                           fontWeight: FontWeight.normal),
                     ),
                   ),
@@ -190,10 +194,10 @@ class _LoginPageState extends State<LoginPage> {
                         MaterialPageRoute(builder: (_) => const RegisterPage()),
                       );
                     },
-                    child: const Text(
+                    child: Text(
                       'You do not have an account?',
                       style: TextStyle(
-                          color: Color.fromRGBO(143, 148, 251, 1),
+                          color: ThemeColors.primaryDark,
                           fontWeight: FontWeight.normal),
                     ),
                   ),
@@ -202,10 +206,10 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   TextButton(
                     onPressed: () {},
-                    child: const Text(
+                    child: Text(
                       "Forgot Password?",
                       style: TextStyle(
-                          color: Color.fromRGBO(143, 148, 251, 1),
+                          color: ThemeColors.primaryDark,
                           fontWeight: FontWeight.normal),
                     ),
                   ),
