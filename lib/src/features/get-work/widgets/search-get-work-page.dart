@@ -142,6 +142,8 @@ class SearchGetWorkPage extends StatelessWidget {
               ],
             ),
             GridView.builder(
+              scrollDirection: Axis.vertical,
+              physics: const ScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 250,
                 childAspectRatio: 0.68,

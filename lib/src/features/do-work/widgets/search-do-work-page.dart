@@ -62,7 +62,7 @@ class SearchDoWorkPage extends StatelessWidget {
                           // Initial Value
                           value: dropdownvalue,
                           isExpanded: true,
-      
+
                           // Down Arrow Icon
                           icon: const Icon(
                             Icons.keyboard_arrow_down,
@@ -145,6 +145,8 @@ class SearchDoWorkPage extends StatelessWidget {
               ],
             ),
             GridView.builder(
+              scrollDirection: Axis.vertical,
+              physics: const ScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 250,
                 childAspectRatio: 0.68,
@@ -166,8 +168,8 @@ class SearchDoWorkPage extends StatelessWidget {
                     minWidth: 300,
                     maxHeight: 400,
                   ),
-                  margin: const EdgeInsets.symmetric(
-                      vertical: 8, horizontal: 10),
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
@@ -249,8 +251,7 @@ class SearchDoWorkPage extends StatelessWidget {
                             horizontal: 10,
                           ),
                           child: Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 jobs[index].price,
