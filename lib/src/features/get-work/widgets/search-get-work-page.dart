@@ -153,137 +153,133 @@ class SearchGetWorkPage extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: 5,
                 itemBuilder: (BuildContext ctx, int index) {
-                  return Flexible(
-                    flex: 1,
-                    fit: FlexFit.loose,
-                    child: Container(
-                      padding: const EdgeInsets.only(
-                        left: 5,
-                        right: 5,
-                        top: 5,
-                      ),
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 8, horizontal: 10),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => const DetailedViewGetWorkPage(),
+                  return Container(
+                    padding: const EdgeInsets.only(
+                      left: 5,
+                      right: 5,
+                      top: 5,
+                    ),
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 8, horizontal: 10),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const DetailedViewGetWorkPage(),
+                          ),
+                        );
+                      },
+                      child: Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              'assets/images/gigel.jpg',
+                              height: 100,
+                              width: 200,
+                              fit: BoxFit.cover,
                             ),
-                          );
-                        },
-                        child: Column(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.asset(
-                                'assets/images/gigel.jpg',
-                                height: 100,
-                                width: 200,
-                                fit: BoxFit.cover,
+                          ),
+                          Container(
+                            padding: const EdgeInsets.only(
+                              bottom: 8,
+                              top: 10,
+                              left: 10,
+                              right: 10,
+                            ),
+                            alignment: Alignment.centerLeft,
+                            child: const Text(
+                              "Cant la nunti",
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.orange,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Container(
-                              padding: const EdgeInsets.only(
-                                bottom: 8,
-                                top: 10,
-                                left: 10,
-                                right: 10,
-                              ),
-                              alignment: Alignment.centerLeft,
-                              child: const Text(
-                                "Cant la nunti",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.orange,
-                                  fontWeight: FontWeight.bold,
+                          ),
+                          Container(
+                            padding: const EdgeInsets.only(
+                              bottom: 8,
+                              left: 5,
+                              right: 5,
+                            ),
+                            alignment: Alignment.centerLeft,
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.location_on,
+                                  size: 13,
+                                  color: Colors.lightBlue[700],
                                 ),
-                              ),
-                            ),
-                            Container(
-                              padding: const EdgeInsets.only(
-                                bottom: 8,
-                                left: 5,
-                                right: 5,
-                              ),
-                              alignment: Alignment.centerLeft,
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.location_on,
-                                    size: 13,
+                                const SizedBox(
+                                  width: 2,
+                                ),
+                                Text(
+                                  'Oradea',
+                                  style: TextStyle(
                                     color: Colors.lightBlue[700],
+                                    fontWeight: FontWeight.w100,
+                                    fontSize: 10,
                                   ),
-                                  const SizedBox(
-                                    width: 2,
-                                  ),
-                                  Text(
-                                    'Oradea',
-                                    style: TextStyle(
-                                      color: Colors.lightBlue[700],
-                                      fontWeight: FontWeight.w100,
-                                      fontSize: 10,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: const EdgeInsets.only(
-                                bottom: 8,
-                                left: 5,
-                                right: 5,
-                              ),
-                              alignment: Alignment.centerLeft,
-                              child: const Text(
-                                "Cant muzica clasica cu piscat de coarde",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.black,
                                 ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.only(
+                              bottom: 8,
+                              left: 5,
+                              right: 5,
+                            ),
+                            alignment: Alignment.centerLeft,
+                            child: const Text(
+                              "Cant muzica clasica cu piscat de coarde",
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.black,
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "5000 RON",
-                                    style: TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.bold,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 10),
+                            child: Row(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "5000 RON",
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.bold,
+                                    color: ThemeColors.secondary,
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.access_time,
+                                      size: 12,
                                       color: ThemeColors.secondary,
                                     ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.access_time,
-                                        size: 12,
+                                    Text(
+                                      "5 Hrs",
+                                      style: TextStyle(
+                                        fontSize: 10,
                                         color: ThemeColors.secondary,
                                       ),
-                                      Text(
-                                        "5 Hrs",
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          color: ThemeColors.secondary,
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
+                                    ),
+                                  ],
+                                )
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   );

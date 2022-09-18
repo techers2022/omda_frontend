@@ -5,6 +5,7 @@ import 'package:omda_frontend/src/features/profile/widgets/profile_page.dart';
 import 'package:omda_frontend/src/features/profile/widgets/profile_widget.dart';
 import 'package:omda_frontend/src/features/do-work/widgets/jobs_data.dart';
 import 'package:omda_frontend/src/features/do-work/widgets/do_work_job.dart';
+import 'package:omda_frontend/src/shared/theme-colors.dart';
 
 class DetailedViewDoWorkPage extends StatelessWidget {
   DetailedViewDoWorkPage({Key? key, required this.nr}) : super(key: key);
@@ -27,10 +28,11 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                   child: Container(
                     width: double.maxFinite,
                     height: 350,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('assets/images/gazon.jpg'),
-                            fit: BoxFit.cover)),
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/images/gazon.jpg'),
+                          fit: BoxFit.cover),
+                    ),
                   ),
                 ),
                 Positioned(
@@ -48,7 +50,7 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                                   builder: (_) => SearchDoWorkPage()),
                             );
                           },
-                          icon: Icon(Icons.arrow_back),
+                          icon: const Icon(Icons.arrow_back),
                           color: Colors.white,
                         ),
                       )
@@ -62,7 +64,7 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                         const EdgeInsets.only(left: 20, right: 20, top: 30),
                     width: MediaQuery.of(context).size.width,
                     height: 580,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(30),
@@ -78,14 +80,15 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                             Text(
                               jobs[nr].name,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold),
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Row(
@@ -95,23 +98,21 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                               children: [
                                 Icon(
                                   Icons.location_on,
-                                  color: Colors.lightBlue[700],
+                                  color: ThemeColors.secondary,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 5,
                                 ),
                                 Text(
                                   jobs[nr].loc,
                                   style: TextStyle(
-                                      color: Colors.lightBlue[700],
-                                      fontWeight: FontWeight.w100),
+                                    color: ThemeColors.secondary,
+                                    fontWeight: FontWeight.w100,
+                                  ),
                                 ),
                               ],
                             ),
                           ],
-                        ),
-                        SizedBox(
-                          height: 0,
                         ),
                         Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -122,17 +123,17 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                                     children: List.generate(5, (index) {
                                       return Icon(
                                         Icons.star,
-                                        color: Colors.yellow,
+                                        color: ThemeColors.primary,
                                       );
                                     }),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   Text(
                                     jobs[nr].rating,
                                     style: TextStyle(
-                                        color: Colors.lightBlue[700],
+                                        color: ThemeColors.secondary,
                                         fontWeight: FontWeight.w100),
                                   ),
                                 ],
@@ -141,87 +142,102 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                                 jobs[nr].price,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: Colors.lightBlue[700],
+                                    color: ThemeColors.secondary,
                                     fontSize: 30,
                                     fontWeight: FontWeight.bold),
                               ),
                             ]),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Row(
                           children: [
                             Container(
-                              width: 80,
                               height: 30,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: Color(0xFFFFB300)),
-                              child: Center(
-                                child: Text('Gradinarit'),
+                                borderRadius: BorderRadius.circular(15),
+                                color: ThemeColors.primary,
+                              ),
+                              child: const Center(
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                  child: Text('Gradinarit'),
+                                ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             Container(
-                              width: 80,
                               height: 30,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: Color(0xFFFFB300)),
+                                borderRadius: BorderRadius.circular(15),
+                                color: ThemeColors.primary,
+                              ),
                               child: Center(
-                                child: Text(jobs[nr].hours),
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                  child: Text(jobs[nr].hours),
+                                ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             Container(
-                              width: 80,
                               height: 30,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: Color(0xFFFFB300)),
+                                borderRadius: BorderRadius.circular(15),
+                                color: ThemeColors.primary,
+                              ),
                               child: Center(
-                                child: Text(jobs[nr].date),
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                  child: Text(jobs[nr].date),
+                                ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             Container(
-                              width: 80,
                               height: 30,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15),
-                                  color: Color(0xFFFFB300)),
+                                  color: ThemeColors.primary),
                               child: Center(
-                                child: Text(jobs[nr].when),
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                  child: Text(jobs[nr].when),
+                                ),
                               ),
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5,
                         ),
-                        Divider(color: Colors.black),
-                        SizedBox(
+                        const Divider(color: Colors.black),
+                        const SizedBox(
                           height: 5,
                         ),
-                        Text(
+                        const Text(
                           'Descriere:',
                           style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Text(
                           jobs[nr].longdescription,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black87,
                               fontSize: 15,
                               fontWeight: FontWeight.w100),
@@ -240,14 +256,15 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                                 );
                               },
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Column(
-                              children: [
+                              children: const [
                                 Text(
                                   "Balota George",
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 24),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 24,
+                                  ),
                                 ),
                                 SizedBox(height: 4),
                                 Text(
@@ -256,23 +273,22 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                           ],
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         InkWell(
                           child: Center(
                             child: Align(
                               alignment: Alignment.bottomCenter,
-                              child: Expanded(
-                                child: Container(
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      color: Color(0xFFFFB300)),
-                                  child: Center(
-                                    child: Text('Angajeaza'),
-                                  ),
+                              child: Container(
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: ThemeColors.primary,
+                                ),
+                                child: const Center(
+                                  child: Text('Angajeaza'),
                                 ),
                               ),
                             ),
@@ -284,7 +300,7 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                             )
                           },
                         ),
-                        SizedBox(height: 30),
+                        const SizedBox(height: 30),
                       ],
                     ),
                   ),
