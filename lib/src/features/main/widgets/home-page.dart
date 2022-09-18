@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const Padding(
-            padding: EdgeInsets.only(top: 10, bottom: 0),
+            padding: EdgeInsets.only(top: 10, bottom: 10),
             child: Text(
               'Alege o categorie',
               textAlign: TextAlign.center,
@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
                 itemCount: categories.length,
                 itemBuilder: (BuildContext ctx, int index) {
                   return Container(
-                    margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                    margin: EdgeInsets.fromLTRB(10, index == 0 ? 0 : 10, 10, 10),
                     height: 150,
                     child: InkWell(
                       child: Stack(
