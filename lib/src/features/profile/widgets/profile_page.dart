@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:omda_frontend/src/shared/user-data.dart';
 
 import 'edit_profile_page.dart';
 import 'numbers_widget.dart';
@@ -22,7 +23,7 @@ class _ProfilePageState extends State<ProfilePage> {
         physics: const BouncingScrollPhysics(),
         children: [
           ProfileWidget(
-            imagePath: "assets/images/profile-pic.jpeg",
+            imagePath: "assets/images/default-profile-icon.png",
             onClicked: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
@@ -44,15 +45,15 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget buildName() => Column(
-        children: const [
+        children: [
           Text(
-            "Balota George",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            "${UserData.firstName} ${UserData.lastName}",
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
           ),
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           Text(
-            "george.balota4@gmail.com",
-            style: TextStyle(color: Colors.grey),
+            UserData.email,
+            style: const TextStyle(color: Colors.grey),
           )
         ],
       );
@@ -69,15 +70,15 @@ class _ProfilePageState extends State<ProfilePage> {
         padding: const EdgeInsets.symmetric(horizontal: 48),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text(
+          children: [
+            const Text(
               'About',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16),
             Text(
-              "About me",
-              style: TextStyle(fontSize: 16, height: 1.4),
+              UserData.description ?? "None",
+              style: const TextStyle(fontSize: 16, height: 1.4),
             ),
           ],
         ),

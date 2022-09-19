@@ -8,33 +8,33 @@ class Data {
     return [
       Category.Category(
         color: Colors.blue,
-        name: 'gradinarit',
+        name: 'Grădinărit',
         imgname: 'gardeningcat',
-        icon: 'favorite',
+        icon: Icons.beach_access_rounded,
       ),
       Category.Category(
         color: Colors.blue,
-        name: 'It',
+        name: 'IT',
         imgname: 'ITcat',
-        icon: 'computer',
+        icon: Icons.admin_panel_settings_rounded,
       ),
       Category.Category(
         color: Colors.blue,
-        name: 'Carat',
+        name: 'Cărat',
         imgname: 'mobilacat',
-        icon: 'local_shipping',
+        icon: Icons.back_hand_rounded,
       ),
       Category.Category(
         color: Colors.blue,
-        name: 'Constructii',
+        name: 'Construcții',
         imgname: 'constructiicat',
-        icon: 'build',
+        icon: Icons.add_home,
       ),
       Category.Category(
         color: Colors.blue,
         name: 'Design',
         imgname: 'designcat',
-        icon: 'border_color',
+        icon: Icons.auto_awesome_rounded,
       ),
     ];
   }

@@ -1,14 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:omda_frontend/src/features/authentication/services/auth.service.dart';
+import 'package:omda_frontend/src/features/authentication/widgets/login-page.dart';
+import 'package:omda_frontend/src/shared/theme-colors.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+
+  void registerUser(BuildContext context) async {
+    if (await AuthService().registerUser(
+        emailController.text,
+        firstNameController.text,
+        lastNameController.text,
+        passwordController.text,
+        confirmPasswordController.text)) {
+      Navigator.pop(context);
+
+      showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+          content:
+              Text(textAlign: TextAlign.center, "Account created successfully"),
+        ),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+          content: Text(
+              textAlign: TextAlign.center,
+              "Something went wrong. Please try again"),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: const Color(0xFF4E54C8)),
+      appBar: AppBar(
+        backgroundColor: ThemeColors.primary,
+      ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
@@ -17,7 +61,7 @@ class RegisterPage extends StatelessWidget {
               height: 400,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/images/background.png'),
+                    image: AssetImage('assets/images/background3.png'),
                     fit: BoxFit.fill),
               ),
               child: Stack(
@@ -58,7 +102,7 @@ class RegisterPage extends StatelessWidget {
                     margin: const EdgeInsets.only(top: 50),
                     child: const Center(
                       child: Text(
-                        "Register",
+                        "Inregistrează-te",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 40,
@@ -78,11 +122,11 @@ class RegisterPage extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
-                        boxShadow: const [
+                        boxShadow: [
                           BoxShadow(
-                              color: Color.fromRGBO(143, 148, 251, .2),
+                              color: ThemeColors.primaryDark.withAlpha(50),
                               blurRadius: 20.0,
-                              offset: Offset(0, 10))
+                              offset: const Offset(0, 10))
                         ]),
                     child: Column(
                       children: <Widget>[
@@ -94,9 +138,10 @@ class RegisterPage extends StatelessWidget {
                             ),
                           ),
                           child: TextField(
+                            controller: emailController,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: "Email or Phone number",
+                              hintText: "Email",
                               hintStyle: TextStyle(color: Colors.grey[400]),
                             ),
                           ),
@@ -119,9 +164,10 @@ class RegisterPage extends StatelessWidget {
                                     ),
                                   ),
                                   child: TextField(
+                                    controller: firstNameController,
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
-                                      hintText: "First Name",
+                                      hintText: "Prenume",
                                       hintStyle:
                                           TextStyle(color: Colors.grey[400]),
                                     ),
@@ -133,9 +179,10 @@ class RegisterPage extends StatelessWidget {
                                   padding: const EdgeInsets.fromLTRB(
                                       8.0, 0.0, 0.0, 0.0),
                                   child: TextField(
+                                    controller: lastNameController,
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
-                                      hintText: "Last Name",
+                                      hintText: "Nume",
                                       hintStyle:
                                           TextStyle(color: Colors.grey[400]),
                                     ),
@@ -153,24 +200,11 @@ class RegisterPage extends StatelessWidget {
                             ),
                           ),
                           child: TextField(
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "Last Name",
-                                hintStyle: TextStyle(color: Colors.grey[400])),
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(8.0),
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(color: Color(0xFFF5F5F5)),
-                            ),
-                          ),
-                          child: TextField(
+                            controller: passwordController,
                             obscureText: true,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: "Password",
+                              hintText: "Parola",
                               hintStyle: TextStyle(color: Colors.grey[400]),
                             ),
                           ),
@@ -178,10 +212,11 @@ class RegisterPage extends StatelessWidget {
                         Container(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
+                            controller: confirmPasswordController,
                             obscureText: true,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: "Confirm Password",
+                              hintText: "Confirmă parola",
                               hintStyle: TextStyle(color: Colors.grey[400]),
                             ),
                           ),
@@ -190,22 +225,24 @@ class RegisterPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 30,
                   ),
                   Center(
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        registerUser(context);
+                      },
                       child: Container(
                         height: 50,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            gradient: const LinearGradient(colors: [
-                              Color.fromRGBO(143, 148, 251, 1),
-                              Color.fromRGBO(143, 148, 251, .6),
+                            gradient: LinearGradient(colors: [
+                              ThemeColors.primary,
+                              ThemeColors.primaryLight,
                             ])),
                         child: const Center(
                           child: Text(
-                            "Create Account",
+                            "Creează cont",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),

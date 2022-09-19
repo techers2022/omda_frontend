@@ -9,6 +9,7 @@ import 'package:omda_frontend/src/features/info-app/widgets/about-page.dart';
 import 'package:omda_frontend/src/features/info-app/widgets/customer-service-page.dart';
 import 'package:omda_frontend/src/features/post-work/widgets/post-work-page.dart';
 import 'package:omda_frontend/src/features/main/widgets/home-page.dart';
+import 'package:omda_frontend/src/shared/theme-colors.dart';
 
 class WrapWidget extends StatelessWidget {
   @override
@@ -28,7 +29,7 @@ class WrapWidget extends StatelessWidget {
           {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const SearchDoWorkPage()),
+              MaterialPageRoute(builder: (_) => SearchDoWorkPage()),
             );
           }
           break;
@@ -63,7 +64,7 @@ class WrapWidget extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           // The search area here
-          backgroundColor: Color(0xFFFFB300),
+          backgroundColor: ThemeColors.primary,
           actions: [
             IconButton(
               icon: Image.asset('assets/images/logoomdarb.png'),
@@ -78,7 +79,7 @@ class WrapWidget extends StatelessWidget {
             ),
           ],
           title: Container(
-            margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+            margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
             width: double.infinity,
             height: 40,
             decoration: BoxDecoration(
@@ -93,7 +94,7 @@ class WrapWidget extends StatelessWidget {
                         /* Clear the search field */
                       },
                     ),
-                    hintText: 'Search...',
+                    hintText: 'Caută...',
                     border: InputBorder.none),
               ),
             ),
@@ -103,55 +104,60 @@ class WrapWidget extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
+            DrawerHeader(
               decoration: BoxDecoration(
-                image: DecorationImage(
+                image: const DecorationImage(
                     image: AssetImage(
                       "assets/images/logoomdarb.png",
                     ),
                     fit: BoxFit.scaleDown,
                     alignment: Alignment.bottomRight),
-                color: Color(0xFFFFB300),
+                color: ThemeColors.primary,
               ),
-              child: Text(
+              child: const Text(
                 'Drawer Header',
                 textAlign: TextAlign.justify,
               ),
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.person,
               ),
-              title: const Text('Profile'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const LoginPage()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.contact_page_rounded,
-              ),
-              title: const Text('Customer Service'),
+              title: const Text('Profil'),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (_) => const CustomerServicePage()),
+                    builder: (_) => const LoginPage(),
+                  ),
                 );
               },
             ),
             ListTile(
-              leading: Icon(
-                Icons.volunteer_activism_rounded,
+              leading: const Icon(
+                Icons.contact_page_rounded,
               ),
-              title: const Text('About Us'),
+              title: const Text('Serviciu clienți'),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => const AboutPage()),
+                  MaterialPageRoute(
+                    builder: (_) => const CustomerServicePage(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.volunteer_activism_rounded,
+              ),
+              title: const Text('Despre noi'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const AboutPage(),
+                  ),
                 );
               },
             ),
@@ -164,21 +170,25 @@ class WrapWidget extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-              backgroundColor: Color(0xFFFFB300)),
+            icon: const Icon(Icons.home),
+            label: 'Acasă',
+            backgroundColor: ThemeColors.primary,
+          ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.work_outline_rounded),
-              label: 'Do-work',
-              backgroundColor: Color(0xFFFFB300)),
+            icon: const Icon(Icons.work_outline_rounded),
+            label: 'Oferă ajutor',
+            backgroundColor: ThemeColors.primary,
+          ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.engineering),
-              label: 'Get-work',
-              backgroundColor: Color(0xFFFFB300)),
+            icon: const Icon(Icons.engineering),
+            label: 'Caută ajutor',
+            backgroundColor: ThemeColors.primary,
+          ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.add_to_photos),
-              label: 'Add Job',
-              backgroundColor: Color(0xFFFFB300)),
+            icon: const Icon(Icons.add_to_photos),
+            label: 'Adaugă anunț',
+            backgroundColor: ThemeColors.primary,
+          ),
         ],
         onTap: _onItemTapped,
       ),
