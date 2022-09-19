@@ -39,6 +39,7 @@ class SearchGetWorkPage extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -83,6 +84,7 @@ class SearchGetWorkPage extends StatelessWidget {
                           style: const TextStyle(
                             color: Colors.white, //Font color
                             fontSize: 15, //font size on dropdown button
+
                           ),
                           borderRadius: BorderRadius.circular(20),
                           dropdownColor: ThemeColors.primary,
@@ -90,6 +92,7 @@ class SearchGetWorkPage extends StatelessWidget {
                       ],
                     ),
                   ),
+
                 ),
                 Container(
                   padding: const EdgeInsets.only(left: 10, right: 10),
@@ -131,6 +134,7 @@ class SearchGetWorkPage extends StatelessWidget {
                           style: const TextStyle(
                             color: Colors.white, //Font color
                             fontSize: 15, //font size on dropdown button
+
                           ),
                           borderRadius: BorderRadius.circular(20),
                           dropdownColor: ThemeColors.primary,
