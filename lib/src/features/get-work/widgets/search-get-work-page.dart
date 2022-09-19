@@ -212,7 +212,7 @@ class SearchGetWorkPage extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.only(left: 10, right: 10),
                     margin: EdgeInsets.only(top: 0),
-                    width: 150,
+                    width: 120,
                     height: 48,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
@@ -258,13 +258,59 @@ class SearchGetWorkPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width: 0,
+                  Container(
+                    padding: EdgeInsets.only(left: 10, right: 10),
+                    margin: EdgeInsets.only(top: 0),
+                    width: 120,
+                    height: 48,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Color(0xFFFFB300)),
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          DropdownButton(
+                            // Initial Value
+                            value: dropdownvalue,
+                            isExpanded: true,
+
+                            // Down Arrow Icon
+                            icon: const Icon(
+                              Icons.keyboard_arrow_down,
+                              size: 15,
+                            ),
+                            underline: SizedBox(),
+                            // Array list of items
+                            items: items.map((String items) {
+                              return DropdownMenuItem(
+                                value: items,
+                                child: Text(items),
+                              );
+                            }).toList(),
+                            // After selecting the desired option,it will
+                            // change button value to selected value
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropdownvalue = newValue!;
+                              });
+                            },
+                            style: TextStyle(
+                                //te
+                                color: Colors.white, //Font color
+                                fontSize: 15 //font size on dropdown button
+                                ),
+                            borderRadius: BorderRadius.circular(20),
+                            dropdownColor: Color(0xFFFFB300),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                   Container(
                     padding: EdgeInsets.only(left: 10, right: 10),
                     margin: EdgeInsets.only(top: 0),
-                    width: 150,
+                    width: 120,
                     height: 48,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
