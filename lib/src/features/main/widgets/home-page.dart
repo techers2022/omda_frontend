@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Layout.appBar(context),
+      appBar: Layout.appBar(context, false),
       drawer: Layout.drawer(context),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

@@ -10,7 +10,7 @@ import 'package:omda_frontend/src/shared/helper.dart';
 import 'package:omda_frontend/src/shared/theme-colors.dart';
 
 class Layout {
-  static AppBar appBar(BuildContext context) {
+  static AppBar appBar(BuildContext context, bool forPost) {
     return AppBar(
       // The search area here
       backgroundColor: ThemeColors.primary,
@@ -28,6 +28,13 @@ class Layout {
           },
         ),
       ],
+      bottom: forPost ? TabBar(
+        indicatorColor: ThemeColors.secondary,
+        tabs: const [
+          Tab(text: "Caut ajutor"),
+          Tab(text: "Ofer ajutor"),
+        ],
+      ) : null,
       title: Container(
         margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         width: double.infinity,
@@ -61,18 +68,17 @@ class Layout {
         padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
-            decoration: BoxDecoration(
-              image: const DecorationImage(
-                image: AssetImage(
-                  "assets/images/logoomdarb2.png",
+              decoration: BoxDecoration(
+                image: const DecorationImage(
+                  image: AssetImage(
+                    "assets/images/logoomdarb2.png",
+                  ),
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.center,
                 ),
-                fit: BoxFit.scaleDown,
-                alignment: Alignment.center,
+                color: ThemeColors.primary,
               ),
-              color: ThemeColors.primary,
-            ),
-            child: const Text("")
-          ),
+              child: const Text("")),
           ListTile(
             leading: const Icon(
               Icons.person,

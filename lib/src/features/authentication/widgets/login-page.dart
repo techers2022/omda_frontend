@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
         builder: (context) => const AlertDialog(
           content: Text(
               textAlign: TextAlign.center,
-              "No account was found matching those credentials"),
+              "Nu s-a gasit acest cont"),
         ),
       );
     }

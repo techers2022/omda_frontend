@@ -31,7 +31,7 @@ class SearchGetWorkPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
-      appBar: Layout.appBar(context),
+      appBar: Layout.appBar(context, false),
       drawer: Layout.drawer(context),
       body: SingleChildScrollView(
         child: Column(

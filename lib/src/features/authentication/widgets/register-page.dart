@@ -31,8 +31,10 @@ class _RegisterPageState extends State<RegisterPage> {
       showDialog(
         context: context,
         builder: (context) => const AlertDialog(
-          content:
-              Text(textAlign: TextAlign.center, "Account created successfully"),
+          content: Text(
+            textAlign: TextAlign.center,
+            "Cont creat cu succes",
+          ),
         ),
       );
     } else {
@@ -40,8 +42,9 @@ class _RegisterPageState extends State<RegisterPage> {
         context: context,
         builder: (context) => const AlertDialog(
           content: Text(
-              textAlign: TextAlign.center,
-              "Something went wrong. Please try again"),
+            textAlign: TextAlign.center,
+            "O problemă a fost întâmpinată, te rog să reâncerci",
+          ),
         ),
       );
     }
