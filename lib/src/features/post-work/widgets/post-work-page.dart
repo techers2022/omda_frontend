@@ -262,7 +262,7 @@ class _PostWorkPageState extends State<PostWorkPage> {
                   ],
                 ),
               ),
-              const Icon(Icons.directions_transit),
+              const Center(child: Text("Curând")),
             ],
           ),
           bottomNavigationBar: Layout.bottomNavigationBar(context, 3)),

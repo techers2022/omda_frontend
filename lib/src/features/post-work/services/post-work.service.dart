@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:omda_frontend/constants/api.constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:omda_frontend/src/shared/user-data.dart';
-import 'package:intl/intl.dart';
 
 class PostWorkService {
   Future<bool> postWork(String category, String description, String date,
