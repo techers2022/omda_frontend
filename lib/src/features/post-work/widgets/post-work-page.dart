@@ -160,7 +160,7 @@ class _PostWorkPageState extends State<PostWorkPage> {
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 39, 59, 122),
+                              color: Colors.black,
                             ),
                           ),
                         ),
@@ -181,7 +181,7 @@ class _PostWorkPageState extends State<PostWorkPage> {
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 39, 59, 122),
+                              color: Colors.black,
                             ),
                           ),
                         ),
@@ -228,7 +228,7 @@ class _PostWorkPageState extends State<PostWorkPage> {
                           ),
                         ),
                         const SizedBox(
-                          height: 20.0,
+                          height: 15.0,
                         ),
                         Center(
                           child: TextButton(
@@ -257,7 +257,7 @@ class _PostWorkPageState extends State<PostWorkPage> {
                       ],
                     ),
                     const SizedBox(
-                      height: 32.0,
+                      height: 27.0,
                     ),
                   ],
                 ),
