@@ -8,6 +8,7 @@ import 'package:omda_frontend/src/features/post-work/widgets/post-work-page.dart
 import 'package:omda_frontend/src/features/profile/widgets/profile_page.dart';
 import 'package:omda_frontend/src/shared/helper.dart';
 import 'package:omda_frontend/src/shared/theme-colors.dart';
+import 'package:omda_frontend/src/shared/user-data.dart';
 
 class Layout {
   static AppBar appBar(BuildContext context, bool forPost) {
@@ -28,13 +29,15 @@ class Layout {
           },
         ),
       ],
-      bottom: forPost ? TabBar(
-        indicatorColor: ThemeColors.secondary,
-        tabs: const [
-          Tab(text: "Caut ajutor"),
-          Tab(text: "Ofer ajutor"),
-        ],
-      ) : null,
+      bottom: forPost
+          ? TabBar(
+              indicatorColor: ThemeColors.secondary,
+              tabs: const [
+                Tab(text: "Caut ajutor"),
+                Tab(text: "Ofer ajutor"),
+              ],
+            )
+          : null,
       title: Container(
         margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         width: double.infinity,
@@ -191,10 +194,22 @@ class Layout {
             break;
           case 3:
             {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const PostWorkPage()),
-              );
+              if (UserData.id.isEmpty) {
+                showDialog(
+                  context: context,
+                  builder: (context) => const AlertDialog(
+                    content: Text(
+                      textAlign: TextAlign.center,
+                      "Trebuie sa fi conectat cu un cont pentru a putea adăuga anunţuri",
+                    ),
+                  ),
+                );
+              } else {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const PostWorkPage()),
+                );
+              }
             }
             break;
           default:

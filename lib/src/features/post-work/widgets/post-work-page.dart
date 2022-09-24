@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:omda_frontend/src/features/main/widgets/category.dart';
 import 'package:omda_frontend/src/features/main/widgets/data.dart';
 import 'package:omda_frontend/src/features/post-work/services/post-work.service.dart';
@@ -17,18 +18,23 @@ class _PostWorkPageState extends State<PostWorkPage> {
 
   String selectedCategory = Data.getMockedCategories().first.name;
 
+  TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController dateController = TextEditingController();
+  TextEditingController locationController = TextEditingController();
   TextEditingController durationController = TextEditingController();
   TextEditingController priceController = TextEditingController();
 
   void postWork(BuildContext context) async {
     if (await PostWorkService().postWork(
-        selectedCategory,
-        descriptionController.text,
-        dateController.text,
-        durationController.text,
-        priceController.text)) {
+      selectedCategory,
+      titleController.text,
+      descriptionController.text,
+      dateController.text,
+      locationController.text,
+      durationController.text,
+      priceController.text,
+    )) {
       showDialog(
         context: context,
         builder: (context) => const AlertDialog(
@@ -132,6 +138,27 @@ class _PostWorkPageState extends State<PostWorkPage> {
                         const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 12),
                           child: Text(
+                            'Titlu',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: TextField(
+                            controller: titleController,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'Tuns gazon',
+                            ),
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 12),
+                          child: Text(
                             'Descriere',
                             style: TextStyle(
                               fontSize: 18,
@@ -177,6 +204,27 @@ class _PostWorkPageState extends State<PostWorkPage> {
                         const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 12),
                           child: Text(
+                            'Locaţie',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: TextField(
+                            controller: locationController,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'Oradea, strada A nr 2',
+                            ),
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 12),
+                          child: Text(
                             'Durata',
                             style: TextStyle(
                               fontSize: 18,
@@ -211,6 +259,10 @@ class _PostWorkPageState extends State<PostWorkPage> {
                           child: Stack(
                             children: <Widget>[
                               TextField(
+                                keyboardType: TextInputType.number,
+                                inputFormatters: <TextInputFormatter>[
+                                  FilteringTextInputFormatter.digitsOnly
+                                ],
                                 controller: priceController,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
