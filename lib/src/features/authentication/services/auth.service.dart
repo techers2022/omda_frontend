@@ -30,14 +30,20 @@ class AuthService {
     return false;
   }
 
-  Future<bool> registerUser(String email, String firstName, String lastName,
-      String password, String confirmPassword) async {
+  Future<bool> registerUser(
+    String email,
+    String phone,
+    String firstName,
+    String lastName,
+    String password,
+  ) async {
     try {
       var url = Uri.parse('${ApiConstants.baseUrl}/register');
       var response = await http.post(url,
           headers: {"Content-Type": "application/json"},
           body: json.encode({
             "email": email,
+            "phone": phone,
             "password": password,
             "firstName": firstName,
             "lastName": lastName

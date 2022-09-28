@@ -3,6 +3,7 @@ import 'package:omda_frontend/src/features/do-work/models/work-simple.model.dart
 import 'package:omda_frontend/src/features/do-work/services/do-work.service.dart';
 import 'package:omda_frontend/src/features/do-work/widgets/detailed-view-do-work-page.dart';
 import 'package:omda_frontend/src/features/get-work/widgets/search-get-work-page.dart';
+import 'package:omda_frontend/src/shared/helper.dart';
 import 'package:omda_frontend/src/shared/layout.dart';
 import 'package:omda_frontend/src/shared/theme-colors.dart';
 
@@ -31,19 +32,26 @@ class _SearchDoWorkPageState extends State<SearchDoWorkPage> {
   @override
   Widget build(BuildContext context) {
     String dropdownvalue = 'Categorii';
-    String dropdownvalue2 = 'Sorteaza';
+    String dropdownvalue2 = 'Sortează';
+    String dropdownvalue3 = 'Filtrează';
 
     // List of items in our dropdown menu
     var items = [
       'Categorii',
-      'Gradinarit',
+      'Gradinărit',
       'IT',
-      'Carat',
-      'Constructii',
+      'Cărat',
+      'Construcţii',
       'Design',
     ];
     var items2 = [
-      'Sorteaza',
+      'Sortează',
+      'Preţ',
+      'Durată',
+      'Dată',
+    ];
+    var items3 = [
+      'Filtrează',
       'Pret',
       'Durata',
       'Data',
@@ -160,6 +168,54 @@ class _SearchDoWorkPageState extends State<SearchDoWorkPage> {
                     ),
                   ),
                 ),
+                Container(
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  margin: const EdgeInsets.only(top: 0),
+                  width: 150,
+                  height: 48,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: ThemeColors.primary,
+                  ),
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        DropdownButton(
+                          // Initial Value
+                          value: dropdownvalue3,
+                          isExpanded: true,
+                          // Down Arrow Icon
+                          icon: const Icon(
+                            Icons.keyboard_arrow_down,
+                            size: 15,
+                          ),
+                          underline: const SizedBox(),
+                          // Array list of items
+                          items: items3.map((String items2) {
+                            return DropdownMenuItem(
+                              value: items2,
+                              child: Text(items2),
+                            );
+                          }).toList(),
+                          // After selecting the desired option,it will
+                          // change button value to selected value
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownvalue3 = newValue!;
+                            });
+                          },
+                          style: const TextStyle(
+                            color: Colors.white, //Font color
+                            fontSize: 15, //font size on dropdown button
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                          dropdownColor: ThemeColors.primary,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
             works == null
@@ -174,9 +230,9 @@ class _SearchDoWorkPageState extends State<SearchDoWorkPage> {
                 : works!.isEmpty
                     ? const Center(
                         child: Padding(
-                          padding: EdgeInsets.only(top: 20),
-                          child: Text("Nu există niciun anunţ în acest moment"),
-                        ))
+                        padding: EdgeInsets.only(top: 20),
+                        child: Text("Nu există niciun anunţ în acest moment"),
+                      ))
                     : GridView.builder(
                         scrollDirection: Axis.vertical,
                         physics: const ScrollPhysics(),
@@ -203,7 +259,9 @@ class _SearchDoWorkPageState extends State<SearchDoWorkPage> {
                               maxHeight: 400,
                             ),
                             margin: const EdgeInsets.symmetric(
-                                vertical: 8, horizontal: 10,),
+                              vertical: 8,
+                              horizontal: 10,
+                            ),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10),
@@ -213,8 +271,8 @@ class _SearchDoWorkPageState extends State<SearchDoWorkPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (_) =>
-                                        DetailedViewDoWorkPage(workId: works![index].id),
+                                    builder: (_) => DetailedViewDoWorkPage(
+                                        workId: works![index].id),
                                   ),
                                 );
                               },
@@ -223,10 +281,11 @@ class _SearchDoWorkPageState extends State<SearchDoWorkPage> {
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
                                     child: Image.asset(
-                                        'assets/images/gazon.jpg',
-                                        height: 100,
-                                        width: 200,
-                                        fit: BoxFit.cover,),
+                                      getCategoryImage(works![index].category),
+                                      height: 100,
+                                      width: 200,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                   Container(
                                     padding: const EdgeInsets.only(
@@ -264,9 +323,10 @@ class _SearchDoWorkPageState extends State<SearchDoWorkPage> {
                                         Text(
                                           works![index].location,
                                           style: TextStyle(
-                                              color: ThemeColors.secondary,
-                                              fontWeight: FontWeight.w100,
-                                              fontSize: 10,),
+                                            color: ThemeColors.secondary,
+                                            fontWeight: FontWeight.w100,
+                                            fontSize: 10,
+                                          ),
                                         ),
                                       ],
                                     ),

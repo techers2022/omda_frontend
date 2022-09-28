@@ -4,6 +4,7 @@ import 'package:omda_frontend/src/features/get-work/widgets/search-get-work-page
 import 'package:omda_frontend/src/features/info-app/widgets/about-page.dart';
 import 'package:omda_frontend/src/features/info-app/widgets/customer-service-page.dart';
 import 'package:omda_frontend/src/features/main/widgets/home-page.dart';
+import 'package:omda_frontend/src/features/my-works/widgets/my-works-page.dart';
 import 'package:omda_frontend/src/features/post-work/widgets/post-work-page.dart';
 import 'package:omda_frontend/src/features/profile/widgets/profile_page.dart';
 import 'package:omda_frontend/src/shared/helper.dart';
@@ -98,6 +99,32 @@ class Layout {
           ),
           ListTile(
             leading: const Icon(
+              Icons.assignment,
+            ),
+            title: const Text('Anunţurile mele'),
+            onTap: () {
+              if (UserData.id.isEmpty) {
+                showDialog(
+                  context: context,
+                  builder: (context) => const AlertDialog(
+                    content: Text(
+                      textAlign: TextAlign.center,
+                      "Trebuie sa fi conectat cu un cont pentru a putea accesa această pagină",
+                    ),
+                  ),
+                );
+              } else {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const MyWorksPage(),
+                  ),
+                );
+              }
+            },
+          ),
+          ListTile(
+            leading: const Icon(
               Icons.contact_page_rounded,
             ),
             title: const Text('Serviciu clienți'),
@@ -165,6 +192,8 @@ class Layout {
       ],
       currentIndex: currentIndex,
       onTap: (int index) {
+        if (index == currentIndex) return;
+
         switch (index) {
           case 0:
             {

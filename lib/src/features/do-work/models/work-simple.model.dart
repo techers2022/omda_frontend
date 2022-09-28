@@ -10,7 +10,6 @@ WorkSimpleModel workSimpleModelFromJson(String str) =>
 class WorkSimpleModel {
   WorkSimpleModel({
     required this.id,
-    required this.userId,
     required this.title,
     required this.category,
     required this.price,
@@ -20,7 +19,6 @@ class WorkSimpleModel {
   });
 
   String id;
-  String userId;
   String title;
   String category;
   int price;
@@ -31,7 +29,6 @@ class WorkSimpleModel {
   factory WorkSimpleModel.fromJson(Map<String, dynamic> json) =>
       WorkSimpleModel(
         id: json["id"],
-        userId: json["userId"],
         title: json["title"],
         category: json["category"],
         price: json["price"],

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:omda_frontend/src/features/do-work/models/work-detailed.model.dart';
 import 'package:omda_frontend/src/features/do-work/services/do-work.service.dart';
-import 'package:omda_frontend/src/features/main/widgets/home-page.dart';
-import 'package:omda_frontend/src/features/profile/widgets/profile_page.dart';
-import 'package:omda_frontend/src/features/profile/widgets/profile_widget.dart';
+import 'package:omda_frontend/src/features/my-works/widgets/my-works-page.dart';
+import 'package:omda_frontend/src/shared/helper.dart';
 import 'package:omda_frontend/src/shared/theme-colors.dart';
+import 'package:omda_frontend/src/shared/user-data.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailedViewDoWorkPage extends StatefulWidget {
   DetailedViewDoWorkPage({Key? key, required this.workId}) : super(key: key);
@@ -20,6 +21,35 @@ class _DetailedViewDoWorkPageState extends State<DetailedViewDoWorkPage> {
   void getWorkDetails() async {
     work = await DoWorkService().getWorkDetails(widget.workId);
     Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
+  }
+
+  void acceptWork(BuildContext context, String workId) async {
+    if (await DoWorkService().acceptWork(workId)) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const MyWorksPage()),
+      );
+
+      showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+          content: Text(
+            textAlign: TextAlign.center,
+            "Anunţ acceptat",
+          ),
+        ),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+          content: Text(
+            textAlign: TextAlign.center,
+            "O problemă a fost întâmpinată, te rog să reâncerci",
+          ),
+        ),
+      );
+    }
   }
 
   @override
@@ -43,7 +73,7 @@ class _DetailedViewDoWorkPageState extends State<DetailedViewDoWorkPage> {
             )
           : ListView(
               children: [
-                Container(
+                SizedBox(
                   width: double.maxFinite,
                   height: MediaQuery.of(context).size.height * 1.23,
                   child: Stack(
@@ -54,10 +84,12 @@ class _DetailedViewDoWorkPageState extends State<DetailedViewDoWorkPage> {
                         child: Container(
                           width: double.maxFinite,
                           height: 350,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('assets/images/gazon.jpg'),
-                                fit: BoxFit.cover),
+                              image:
+                                  AssetImage(getCategoryImage(work!.category)),
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
@@ -83,7 +115,10 @@ class _DetailedViewDoWorkPageState extends State<DetailedViewDoWorkPage> {
                         top: 320,
                         child: Container(
                           padding: const EdgeInsets.only(
-                              left: 20, right: 20, top: 30),
+                            left: 20,
+                            right: 20,
+                            top: 30,
+                          ),
                           width: MediaQuery.of(context).size.width,
                           height: 580,
                           decoration: const BoxDecoration(
@@ -158,8 +193,9 @@ class _DetailedViewDoWorkPageState extends State<DetailedViewDoWorkPage> {
                                         Text(
                                           "5",
                                           style: TextStyle(
-                                              color: ThemeColors.secondary,
-                                              fontWeight: FontWeight.w100),
+                                            color: ThemeColors.secondary,
+                                            fontWeight: FontWeight.w100,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -167,9 +203,10 @@ class _DetailedViewDoWorkPageState extends State<DetailedViewDoWorkPage> {
                                       "${work!.price} RON",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                          color: ThemeColors.secondary,
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.bold),
+                                        color: ThemeColors.secondary,
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ]),
                               const SizedBox(
@@ -183,11 +220,11 @@ class _DetailedViewDoWorkPageState extends State<DetailedViewDoWorkPage> {
                                       borderRadius: BorderRadius.circular(15),
                                       color: ThemeColors.primary,
                                     ),
-                                    child: const Center(
+                                    child: Center(
                                       child: Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(10, 0, 10, 0),
-                                        child: Text('Gradinarit'),
+                                        padding: const EdgeInsets.fromLTRB(
+                                            10, 0, 10, 0),
+                                        child: Text(work!.category),
                                       ),
                                     ),
                                   ),
@@ -252,68 +289,106 @@ class _DetailedViewDoWorkPageState extends State<DetailedViewDoWorkPage> {
                                     fontSize: 15,
                                     fontWeight: FontWeight.w100),
                               ),
+                              const SizedBox(
+                                height: 20,
+                              ),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  ProfileWidget(
-                                    imagePath: "assets/images/profile-pic.jpeg",
-                                    onClicked: () {
-                                      Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const ProfilePage(),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                  const SizedBox(width: 10),
                                   Column(
-                                    children: const [
+                                    children: [
                                       Text(
-                                        "Balota George",
-                                        style: TextStyle(
+                                        work!.acceptedByUserId == null ||
+                                                UserData.id ==
+                                                    work!.acceptedByUserId
+                                            ? "Postat de către:"
+                                            : "Acceptat de către:",
+                                        style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 24,
                                         ),
                                       ),
-                                      SizedBox(height: 4),
+                                      const SizedBox(height: 4),
                                       Text(
-                                        "george.balota4@gmail.com",
-                                        style: TextStyle(color: Colors.grey),
+                                        work!.acceptedByUserId == null ||
+                                                UserData.id ==
+                                                    work!.acceptedByUserId
+                                            ? work!.userFullName
+                                            : work!.acceptedByUserFullName!,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 22,
+                                        ),
                                       ),
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        work!.acceptedByUserId == null ||
+                                                UserData.id ==
+                                                    work!.acceptedByUserId
+                                            ? work!.userEmail
+                                            : work!.acceptedByUserEmail!,
+                                        style: const TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 4),
+                                      UserData.id == work!.userId ||
+                                              UserData.id ==
+                                                  work!.acceptedByUserId
+                                          ? TextButton(
+                                              onPressed: () {
+                                                launchUrl(Uri.parse(
+                                                    "tel://${work!.acceptedByUserId == null || UserData.id == work!.acceptedByUserId ? work!.userPhone : work!.acceptedByUserPhone}"));
+                                              },
+                                              child: Text(
+                                                work!.acceptedByUserId ==
+                                                            null ||
+                                                        UserData.id ==
+                                                            work!
+                                                                .acceptedByUserId
+                                                    ? work!.userPhone
+                                                    : work!
+                                                        .acceptedByUserPhone!,
+                                                style: const TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                            )
+                                          : const SizedBox(),
                                     ],
                                   ),
-                                  const SizedBox(width: 10),
                                 ],
                               ),
-                              const SizedBox(height: 20),
-                              InkWell(
-                                child: Center(
-                                  child: Align(
-                                    alignment: Alignment.bottomCenter,
-                                    child: Container(
-                                      height: 40,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15),
-                                        color: ThemeColors.primary,
+                              const SizedBox(height: 30),
+                              UserData.id.isEmpty ||
+                                      UserData.id == work!.userId ||
+                                      work!.acceptedByUserId != null
+                                  ? const SizedBox()
+                                  : InkWell(
+                                      child: Center(
+                                        child: Align(
+                                          alignment: Alignment.bottomCenter,
+                                          child: Container(
+                                            height: 40,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                              color: ThemeColors.primary,
+                                            ),
+                                            child: const Center(
+                                              child: Text('Acceptă'),
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                      child: const Center(
-                                        child: Text('Angajeaza'),
-                                      ),
+                                      onTap: () =>
+                                          {acceptWork(context, work!.id)},
                                     ),
-                                  ),
-                                ),
-                                onTap: () => {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (_) => HomePage(),
-                                    ),
-                                  )
-                                },
-                              ),
                               const SizedBox(height: 30),
                             ],
                           ),

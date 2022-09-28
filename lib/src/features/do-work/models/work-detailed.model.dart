@@ -7,6 +7,13 @@ class WorkDetailedModel {
   WorkDetailedModel({
     required this.id,
     required this.userId,
+    required this.userFullName,
+    required this.userEmail,
+    required this.userPhone,
+    this.acceptedByUserId,
+    this.acceptedByUserFullName,
+    this.acceptedByUserEmail,
+    this.acceptedByUserPhone,
     required this.title,
     required this.category,
     required this.price,
@@ -18,6 +25,13 @@ class WorkDetailedModel {
 
   String id;
   String userId;
+  String userFullName;
+  String userEmail;
+  String userPhone;
+  String? acceptedByUserId;
+  String? acceptedByUserFullName;
+  String? acceptedByUserEmail;
+  String? acceptedByUserPhone;
   String title;
   String category;
   int price;
@@ -30,6 +44,13 @@ class WorkDetailedModel {
       WorkDetailedModel(
         id: json["id"],
         userId: json["userId"],
+        userFullName: json["userFullName"],
+        userEmail: json["userEmail"],
+        userPhone: json["userPhone"],
+        acceptedByUserId: json["acceptedByUserId"],
+        acceptedByUserFullName: json["acceptedByUserFullName"],
+        acceptedByUserEmail: json["acceptedByUserEmail"],
+        acceptedByUserPhone: json["acceptedByUserPhone"],
         title: json["title"],
         category: json["category"],
         price: json["price"],

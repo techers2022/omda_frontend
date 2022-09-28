@@ -3,6 +3,7 @@ import 'package:omda_frontend/src/features/authentication/services/auth.service.
 import 'package:omda_frontend/src/features/authentication/widgets/register-page.dart';
 import 'package:omda_frontend/src/features/main/widgets/home-page.dart';
 import 'package:omda_frontend/src/shared/theme-colors.dart';
+import 'package:omda_frontend/src/shared/user-data.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -19,14 +20,14 @@ class _LoginPageState extends State<LoginPage> {
     if (await AuthService()
         .loginUser(emailController.text, passwordController.text)) {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (_) => HomePage()));
+        context,
+        MaterialPageRoute(builder: (_) => HomePage()),
+      );
     } else {
       showDialog(
         context: context,
         builder: (context) => const AlertDialog(
-          content: Text(
-              textAlign: TextAlign.center,
-              "Nu s-a gasit acest cont"),
+          content: Text(textAlign: TextAlign.center, "Nu s-a gasit acest cont"),
         ),
       );
     }
@@ -177,14 +178,22 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (_) => HomePage()));
+                      UserData.id = "";
+                      UserData.email = "guest@guest.guest";
+                      UserData.firstName = "guest";
+                      UserData.lastName = "guest";
+                      UserData.description = "guesting";
+
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (_) => HomePage()),
+                      );
                     },
                     child: Text(
                       'Intră ca invitat (fară credențiale)',
                       style: TextStyle(
                           color: ThemeColors.primaryDark,
-                          fontWeight: FontWeight.normal),
+                          fontWeight: FontWeight.normal,),
                     ),
                   ),
                   const SizedBox(

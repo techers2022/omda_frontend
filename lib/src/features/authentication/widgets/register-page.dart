@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:omda_frontend/src/features/authentication/services/auth.service.dart';
@@ -14,18 +15,34 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   TextEditingController emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
 
   void registerUser(BuildContext context) async {
+    if (passwordController.text != confirmPasswordController.text) {
+      showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+          content: Text(
+            textAlign: TextAlign.center,
+            "Parolele nu se potrivesc",
+          ),
+        ),
+      );
+
+      return;
+    }
+
     if (await AuthService().registerUser(
-        emailController.text,
-        firstNameController.text,
-        lastNameController.text,
-        passwordController.text,
-        confirmPasswordController.text)) {
+      emailController.text,
+      phoneController.text,
+      firstNameController.text,
+      lastNameController.text,
+      passwordController.text,
+    )) {
       Navigator.pop(context);
 
       showDialog(
@@ -145,6 +162,26 @@ class _RegisterPageState extends State<RegisterPage> {
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: "Email",
+                              hintStyle: TextStyle(color: Colors.grey[400]),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(8.0),
+                          decoration: const BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(color: Color(0xFFF5F5F5)),
+                            ),
+                          ),
+                          child: TextField(
+                            keyboardType: TextInputType.number,
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            controller: phoneController,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "Număr de telefon",
                               hintStyle: TextStyle(color: Colors.grey[400]),
                             ),
                           ),
