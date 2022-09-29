@@ -71,148 +71,151 @@ class _SearchDoWorkPageState extends State<SearchDoWorkPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
-                  padding: const EdgeInsets.only(left: 10, right: 10),
-                  margin: const EdgeInsets.only(top: 0),
-                  width: 150,
-                  height: 48,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: ThemeColors.primary,
-                  ),
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        DropdownButton(
-                          // Initial Value
-                          value: dropdownvalue,
-                          isExpanded: true,
-
-                          // Down Arrow Icon
-                          icon: const Icon(
-                            Icons.keyboard_arrow_down,
-                            size: 15,
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    margin: const EdgeInsets.only(left: 10),
+                    height: 48,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: ThemeColors.primary,
+                    ),
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          DropdownButton(
+                            // Initial Value
+                            value: dropdownvalue,
+                            isExpanded: true,
+                
+                            // Down Arrow Icon
+                            icon: const Icon(
+                              Icons.keyboard_arrow_down,
+                              size: 15,
+                            ),
+                            underline: SizedBox(),
+                            // Array list of items
+                            items: items.map((String items) {
+                              return DropdownMenuItem(
+                                value: items,
+                                child: Text(items),
+                              );
+                            }).toList(),
+                            // After selecting the desired option,it will
+                            // change button value to selected value
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropdownvalue = newValue!;
+                              });
+                            },
+                            style: const TextStyle(
+                                color: Colors.white, //Font color
+                                fontSize: 15 //font size on dropdown button
+                                ),
+                            borderRadius: BorderRadius.circular(20),
+                            dropdownColor: ThemeColors.primary,
                           ),
-                          underline: SizedBox(),
-                          // Array list of items
-                          items: items.map((String items) {
-                            return DropdownMenuItem(
-                              value: items,
-                              child: Text(items),
-                            );
-                          }).toList(),
-                          // After selecting the desired option,it will
-                          // change button value to selected value
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              dropdownvalue = newValue!;
-                            });
-                          },
-                          style: const TextStyle(
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    margin: const EdgeInsets.symmetric(horizontal: 5),
+                    height: 48,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: ThemeColors.primary,
+                    ),
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          DropdownButton(
+                            // Initial Value
+                            value: dropdownvalue2,
+                            isExpanded: true,
+                            // Down Arrow Icon
+                            icon: const Icon(
+                              Icons.keyboard_arrow_down,
+                              size: 15,
+                            ),
+                            underline: const SizedBox(),
+                            // Array list of items
+                            items: items2.map((String items2) {
+                              return DropdownMenuItem(
+                                value: items2,
+                                child: Text(items2),
+                              );
+                            }).toList(),
+                            // After selecting the desired option,it will
+                            // change button value to selected value
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropdownvalue2 = newValue!;
+                              });
+                            },
+                            style: const TextStyle(
                               color: Colors.white, //Font color
-                              fontSize: 15 //font size on dropdown button
-                              ),
-                          borderRadius: BorderRadius.circular(20),
-                          dropdownColor: ThemeColors.primary,
-                        ),
-                      ],
+                              fontSize: 15, //font size on dropdown button
+                            ),
+                            borderRadius: BorderRadius.circular(20),
+                            dropdownColor: ThemeColors.primary,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.only(left: 10, right: 10),
-                  margin: const EdgeInsets.only(top: 0),
-                  width: 150,
-                  height: 48,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: ThemeColors.primary,
-                  ),
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        DropdownButton(
-                          // Initial Value
-                          value: dropdownvalue2,
-                          isExpanded: true,
-                          // Down Arrow Icon
-                          icon: const Icon(
-                            Icons.keyboard_arrow_down,
-                            size: 15,
-                          ),
-                          underline: const SizedBox(),
-                          // Array list of items
-                          items: items2.map((String items2) {
-                            return DropdownMenuItem(
-                              value: items2,
-                              child: Text(items2),
-                            );
-                          }).toList(),
-                          // After selecting the desired option,it will
-                          // change button value to selected value
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              dropdownvalue2 = newValue!;
-                            });
-                          },
-                          style: const TextStyle(
-                            color: Colors.white, //Font color
-                            fontSize: 15, //font size on dropdown button
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                          dropdownColor: ThemeColors.primary,
-                        ),
-                      ],
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    margin: const EdgeInsets.only(right: 10),
+                    height: 48,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: ThemeColors.primary,
                     ),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.only(left: 10, right: 10),
-                  margin: const EdgeInsets.only(top: 0),
-                  width: 150,
-                  height: 48,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: ThemeColors.primary,
-                  ),
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        DropdownButton(
-                          // Initial Value
-                          value: dropdownvalue3,
-                          isExpanded: true,
-                          // Down Arrow Icon
-                          icon: const Icon(
-                            Icons.keyboard_arrow_down,
-                            size: 15,
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          DropdownButton(
+                            // Initial Value
+                            value: dropdownvalue3,
+                            isExpanded: true,
+                            // Down Arrow Icon
+                            icon: const Icon(
+                              Icons.keyboard_arrow_down,
+                              size: 15,
+                            ),
+                            underline: const SizedBox(),
+                            // Array list of items
+                            items: items3.map((String items2) {
+                              return DropdownMenuItem(
+                                value: items2,
+                                child: Text(items2),
+                              );
+                            }).toList(),
+                            // After selecting the desired option,it will
+                            // change button value to selected value
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropdownvalue3 = newValue!;
+                              });
+                            },
+                            style: const TextStyle(
+                              color: Colors.white, //Font color
+                              fontSize: 15, //font size on dropdown button
+                            ),
+                            borderRadius: BorderRadius.circular(20),
+                            dropdownColor: ThemeColors.primary,
                           ),
-                          underline: const SizedBox(),
-                          // Array list of items
-                          items: items3.map((String items2) {
-                            return DropdownMenuItem(
-                              value: items2,
-                              child: Text(items2),
-                            );
-                          }).toList(),
-                          // After selecting the desired option,it will
-                          // change button value to selected value
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              dropdownvalue3 = newValue!;
-                            });
-                          },
-                          style: const TextStyle(
-                            color: Colors.white, //Font color
-                            fontSize: 15, //font size on dropdown button
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                          dropdownColor: ThemeColors.primary,
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
