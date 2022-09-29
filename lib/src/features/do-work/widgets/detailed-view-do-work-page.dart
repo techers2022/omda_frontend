@@ -19,7 +19,7 @@ class DetailedViewDoWorkPage extends StatelessWidget {
         children: [
           Container(
             width: double.maxFinite,
-            height: MediaQuery.of(context).size.height * 1.23,
+            height: MediaQuery.of(context).size.height * 1.1,
             child: Stack(
               children: [
                 Positioned(
@@ -276,30 +276,37 @@ class DetailedViewDoWorkPage extends StatelessWidget {
                             const SizedBox(width: 10),
                           ],
                         ),
-                        const SizedBox(height: 20),
-                        InkWell(
-                          child: Center(
-                            child: Align(
-                              alignment: Alignment.bottomCenter,
-                              child: Container(
-                                height: 40,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: ThemeColors.primary,
-                                ),
-                                child: const Center(
-                                  child: Text('Angajeaza'),
-                                ),
+                        const SizedBox(height: 10),
+                        Center(
+                            child: SizedBox(
+                          width: double.infinity,
+                          height: 40,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: ThemeColors.primary,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
                               ),
                             ),
+                            onPressed: () {
+                              final snackBar = SnackBar(
+                                content: const Text('0740 342 756'),
+                                action: SnackBarAction(
+                                  label: 'Suna acum',
+                                  onPressed: () {
+                                    // Some code to undo the change.
+                                  },
+                                ),
+                              );
+
+                              // Find the ScaffoldMessenger in the widget tree
+                              // and use it to show a SnackBar.
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            },
+                            child: Text('Angajeaza'),
                           ),
-                          onTap: () => {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (_) => HomePage()),
-                            )
-                          },
-                        ),
+                        )),
                         const SizedBox(height: 30),
                       ],
                     ),

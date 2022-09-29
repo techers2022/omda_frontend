@@ -134,11 +134,14 @@ class NeedHelp extends StatelessWidget {
                 height: 20.0,
               ),
               Center(
-                child: FlatButton(
-                  child: Text("Postează"),
+                child: TextButton(
+                  child: Text(
+                    "Posteaz ă",
+                    style: TextStyle(
+                      color: Colors.amber,
+                    ),
+                  ),
                   onPressed: () {},
-                  color: Colors.amber,
-                  textColor: Colors.white,
                 ),
               ),
             ],
